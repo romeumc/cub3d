@@ -6,21 +6,31 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/15 20:06:18 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/15 22:41:55 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-# HEADER = /include
-		# include/ft_cub3d.h \
-		# include/get_next_line.h
-HEADERFLAGS = -lbsd -lmlx -lXext -lX11 -lm
+HEADER = include/ft_cub3d.h \
+ 		include/get_next_line.h
+
+UNAME := $(shell uname -s)
+ifeq ($(UNAME), Linux)
+	MLX_FLAGS = -lbsd -lmlx -lXext -lX11 -lm
+	SYSTEM = -D LINUX=1
+else
+	# MLX_FLAGS = -lbsd -lmlx -lXext -lX11 -lm
+	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+	# SYSTEM = -D LINUX=0
+endif
+
+# MLX_FLAGS = -lbsd -lmlx -lXext -lX11 -lm
 
 LIBFT = libft/libft.a
 CFLAGS = -Wall -Wextra -Werror -g
 AR = ar rcsv
 OBJ_DIR = obj
-SRC_DIR = srcs
+SRC_DIR = src
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 SRC = main.c
@@ -32,12 +42,12 @@ $(NAME): $(OBJ)
 	$(MAKE) all -C libft
 	@echo $(ANSI_RESET) ""
 	@echo $(ANSI_B_BGREEN) "compile executable" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	gcc $(CFLAGS) $(LIBFT) $(OBJ) $(HEADERFLAGS) -o $(NAME)
+	gcc $(CFLAGS) $(LIBFT) $(OBJ) $(MLX_FLAGS) $(SYSTEM) -o $(NAME)
 	@echo $(ANSI_RESET) ""
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo $(ANSI_B_BGREEN) "compile ft_printf objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	# gcc $(CFLAGS) -I$(HEADER) -c $< -o $@
+	# gcc $(CFLAGS) -include $(HEADER) -c $< -o $@
 	gcc $(CFLAGS) -c $< -o $@
 	@echo $(ANSI_RESET)
 

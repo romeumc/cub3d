@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 22:27:02 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/15 20:05:09 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/15 22:29:49 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(void)
 {
 	t_data	img;
 	t_game	game;
+	int sizex;
+	int sizey;
 
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, 500, 500, "Hello World!");
@@ -63,6 +65,9 @@ int	main(void)
 	}
 	mlx_put_image_to_window(game.mlx, game.win, img.img, 0, 0);
 
+	mlx_get_screen_size(game.mlx, &sizex, &sizey);
+	printf("Resolution - x:%d y:%d\n", sizex, sizey);
+	printf("EXIT CODE:%d\n", X_EVENT_KEY_EXIT);
 	
 	mlx_key_hook(game.win, key_hook, &game);
 	mlx_mouse_hook(game.win, mouse_hook, &game);

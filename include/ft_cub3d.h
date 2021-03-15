@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:55:42 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/15 19:30:47 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/15 22:14:02 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-# define X_EVENT_KEY_EXIT		33 //Exit program key code
+# ifndef LINUX
+#  define X_EVENT_KEY_EXIT		33 //Exit program key Linux
+# else
+#  define X_EVENT_KEY_EXIT		17 //Exit program on MAC
+# endif
+
 # define KEY_ESC				65307
 # define KEY_A					97
 # define KEY_S					115

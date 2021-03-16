@@ -6,21 +6,23 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:55:42 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/15 22:14:02 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/16 14:27:08 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CUB3D_H
 # define FT_CUB3D_H
 
-# include <mlx.h>
+//# include <mlx.h>
+# include "../mlxbeta/mlx.h"
+//# include "../mlx/mlx.h"
 # include <stdio.h>
 # include <stdlib.h>
 
 # ifndef LINUX
-#  define X_EVENT_KEY_EXIT		33 //Exit program key Linux
+#  define X_EVENT_KEY_EXIT		17 //Exit program key Linux
 # else
-#  define X_EVENT_KEY_EXIT		17 //Exit program on MAC
+#  define X_EVENT_KEY_EXIT		33 //Exit program on MAC
 # endif
 
 # define KEY_ESC				65307
@@ -44,6 +46,7 @@ typedef struct	s_game
 {
 	void	*mlx;
 	void	*win;
+	int		teste; 
 }				t_game;
 
 #endif

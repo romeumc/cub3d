@@ -6,13 +6,12 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/15 22:41:55 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/16 14:04:52 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-HEADER = include/ft_cub3d.h \
- 		include/get_next_line.h
+HEADER = include/ft_cub3d.h
 
 UNAME := $(shell uname -s)
 ifeq ($(UNAME), Linux)
@@ -47,8 +46,8 @@ $(NAME): $(OBJ)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo $(ANSI_B_BGREEN) "compile ft_printf objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	# gcc $(CFLAGS) -include $(HEADER) -c $< -o $@
-	gcc $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) -include $(HEADER) -c $< -o $@
+	#gcc $(CFLAGS) -c $< -o $@
 	@echo $(ANSI_RESET)
 
 $(OBJ): | $(OBJ_DIR)

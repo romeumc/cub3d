@@ -6,11 +6,11 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 23:32:01 by rmartins          #+#    #+#             */
-/*   Updated: 2021/02/10 12:50:52 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/17 15:04:56 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/ft_cub3d.h"
 
 size_t	len(const char *s)
 {

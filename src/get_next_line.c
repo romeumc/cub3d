@@ -6,13 +6,14 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 22:15:31 by rmartins          #+#    #+#             */
-/*   Updated: 2021/02/15 11:36:45 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/17 18:57:52 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../include/ft_cub3d.h"
+#include <stdlib.h>
 
-int		read_buff(char *buffer, char **line, int buff_len, int pos)
+int	read_buff(char *buffer, char **line, int buff_len, int pos)
 {
 	int	i;
 	int	j;
@@ -48,31 +49,41 @@ void	clean_extra_buffer(char *buffer, int pos, int buffer_size)
 	}
 }
 
-int		get_next_line(int fd, char **line)
+static int	get_position(char *buffer, char **line)
+{
+	int	pos;
+
+	if (ft_strlen(buffer) == 0)
+		pos = 0;
+	else
+		pos = read_buff(buffer, line, ft_strlen(buffer), 0);
+	return (pos);
+}
+
+int	get_next_line(int fd, char **line)
 {
 	int			pos;
-	static char	buff[MAXFD][BUFFER_SIZE + 1];
+	static char	buffer[MAXFD][BUFFER_SIZE + 1];
 	int			ret;
-	int			buffer_size;
 
-	buffer_size = BUFFER_SIZE > MAX ? MAX : BUFFER_SIZE;
-	if (buffer_size <= 0 || line == NULL || fd > MAXFD || fd < 0
-		|| !(*line = malloc(sizeof(char))))
+	*line = malloc(sizeof(char));
+	if (line == NULL || fd > MAXFD || fd < 0 || *line == NULL)
 		return (-1);
 	*line[0] = '\0';
-	pos = len(buff[fd]) == 0 ? 0 : read_buff(buff[fd], line, len(buff[fd]), 0);
+	pos = get_position(buffer[fd], line);
 	if (pos < 0)
 		return (1);
-	ft_bzero(buff[fd], buffer_size);
-	while ((ret = read(fd, buff[fd], buffer_size)))
+	ft_bzero(buffer[fd], BUFFER_SIZE);
+	ret = read(fd, buffer[fd], BUFFER_SIZE);
+	while (ret != 0)
 	{
 		if (ret < 0)
 			return (-1);
-		clean_extra_buffer(buff[fd], ret, buffer_size);
-		pos = read_buff(buff[fd], line, ret, pos);
+		clean_extra_buffer(buffer[fd], ret, BUFFER_SIZE);
+		pos = read_buff(buffer[fd], line, ret, pos);
 		if (pos < 0)
 			return (1);
 	}
-	ft_bzero(buff[fd], buffer_size);
+	ft_bzero(buffer[fd], BUFFER_SIZE);
 	return (0);
 }

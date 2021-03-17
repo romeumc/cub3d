@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/05 22:27:02 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/16 14:27:51 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/17 17:37:27 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	my_mlx_pixelput(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	main(void)
+void	rungame()
 {
 	t_data	img;
 	t_game	game;
@@ -51,7 +51,7 @@ int	main(void)
 	int sizey;
 
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 500, 500, "Hello World!");
+	game.win = mlx_new_window(game.mlx, 1000, 1000, "Cub3D!");
 	img.img = mlx_new_image(game.mlx, 500, 500);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
 
@@ -65,6 +65,8 @@ int	main(void)
 	}
 	mlx_put_image_to_window(game.mlx, game.win, img.img, 0, 0);
 
+	//printf(ANSI_B_CYAN "test libft %d\n" ANSI_RESET, ft_atoi("123"));
+
 	mlx_get_screen_size(game.mlx, &sizex, &sizey);
 	printf("Resolution - x:%d y:%d\n", sizex, sizey);
 	printf("EXIT CODE:%d\n", X_EVENT_KEY_EXIT);
@@ -75,4 +77,14 @@ int	main(void)
 	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);
 	//mlx_loop_hook(game.mlx, &main_loop, &game);
 	mlx_loop(game.mlx);
+}
+
+
+
+int	main(int argc, char **argv)
+{
+	validate_args(argc, argv);
+	openmap(argv[1]);
+	//rungame();
+	return(0);
 }

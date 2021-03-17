@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/16 14:04:52 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/17 19:00:24 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +16,9 @@ HEADER = include/ft_cub3d.h
 UNAME := $(shell uname -s)
 ifeq ($(UNAME), Linux)
 	MLX_FLAGS = -lbsd -lmlx -lXext -lX11 -lm
-	SYSTEM = -D LINUX=1
+	SYSTEM = -D LINUX_COMPUTER=1
 else
-	# MLX_FLAGS = -lbsd -lmlx -lXext -lX11 -lm
 	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
-	# SYSTEM = -D LINUX=0
 endif
 
 # MLX_FLAGS = -lbsd -lmlx -lXext -lX11 -lm
@@ -32,22 +30,23 @@ OBJ_DIR = obj
 SRC_DIR = src
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
-SRC = main.c
+SRC = cub3d.c \
+		openmap.c \
+		get_next_line.c get_next_line_utils.c
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(HEADER) $(OBJ)
 	@echo $(ANSI_B_BGREEN) "compile libft" $(ANSI_RESET)$(ANSI_F_BBLACK)
 	$(MAKE) all -C libft
 	@echo $(ANSI_RESET) ""
 	@echo $(ANSI_B_BGREEN) "compile executable" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	gcc $(CFLAGS) $(LIBFT) $(OBJ) $(MLX_FLAGS) $(SYSTEM) -o $(NAME)
+	gcc $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	@echo $(ANSI_RESET) ""
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo $(ANSI_B_BGREEN) "compile ft_printf objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	gcc $(CFLAGS) -include $(HEADER) -c $< -o $@
-	#gcc $(CFLAGS) -c $< -o $@
+	gcc $(CFLAGS) $(SYSTEM) -include $(HEADER) -c $< -o $@
 	@echo $(ANSI_RESET)
 
 $(OBJ): | $(OBJ_DIR)
@@ -58,13 +57,14 @@ $(OBJ_DIR):
 
 clean:
 	@echo $(ANSI_B_RED) "clean" $(ANSI_RESET)$(ANSI_F_BRED)
-	$(MAKE) clean -C libft
+	#$(MAKE) clean -C libft
 	rm -rf $(OBJ_DIR)
 	@echo $(ANSI_RESET) ""
 
 fclean: clean
 	@echo $(ANSI_B_RED) "fclean" $(ANSI_RESET)$(ANSI_F_BRED)
-	$(MAKE) fclean -C libft
+	#$(MAKE) fclean -C libft
+	rm -f cub3DS
 	rm -f $(NAME)
 	@echo $(ANSI_RESET) ""
 
@@ -103,7 +103,7 @@ libnorm2:
 
 run: all
 	@echo $(ANSI_B_RED) "Running for debbuger without sanitize" $(ANSI_RESET)
-	./$(NAME)
+	./$(NAME) $(MAP)
 
 runv: all runs run
 	@echo $(ANSI_B_RED) "Valgrind RESULT" $(ANSI_RESET)
@@ -111,5 +111,7 @@ runv: all runs run
 
 runs: all
 	@echo $(ANSI_B_RED) "Running with sanitize" $(ANSI_RESET)
-	gcc $(CFLAGS) -fsanitize=address $(LIBFT) $(OBJ) $(HEADERFLAGS) -o $(NAME)
-	./$(NAME)
+	gcc $(CFLAGS) -fsanitize=address $(OBJ) $(LIBFT) $(MLX_FLAGS) -o cub3DS
+	./cub3DS $(MAP)
+
+MAP = maps/romeu.cub

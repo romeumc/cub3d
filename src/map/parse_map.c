@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:58:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 01:35:13 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/18 01:52:52 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ static void	ft_free_split(char **str)
 	free(str);
 }
 
+char	*ft_is_all_digit(char *str)
+{
+	size_t	i;
+	i = 0;
+
+	while (i < ft_strlen(str))
+	{
+		if (!(ft_isdigit(str[i])))
+			return ("0");
+		i++;
+	}
+	return (str);
+}
+
 static void	get_resolution(char *line, t_game *game)
 {
 	char	**temp;
@@ -36,8 +50,8 @@ static void	get_resolution(char *line, t_game *game)
 		i++;
 	if (i == 3 && game->resolution_x == 0 && game->resolution_y == 0)
 	{
-		game->resolution_x = ft_atoi(temp[1]);
-		game->resolution_y = ft_atoi(temp[2]);
+		game->resolution_x = ft_atoi(ft_is_all_digit(temp[1]));
+		game->resolution_y = ft_atoi(ft_is_all_digit(temp[2]));
 	}
 	else
 		game->invalid_map_resolution = 1;

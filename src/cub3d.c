@@ -6,85 +6,59 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/17 17:37:27 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/18 01:36:03 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_cub3d.h"
 
-int	close_game(int keycode, t_game *game)
+static void	free_game(t_game *game)
 {
-	printf("Hello from close: %d\n", keycode);
-	printf("%p", game->mlx);
-	//mlx_destroy_window(game->mlx, game->win);
-	exit(0);
+	free(game->texture_no);
+	free(game->texture_so);
+	free(game->texture_we);
+	free(game->texture_ea);
+	free(game->texture_sprite);
 }
 
-int	key_hook(int keycode, t_game *game)
+static void	init_invalid_map(t_game *game)
 {
-	printf("Hello from key_hook: %d\n", keycode);
-	if (keycode == KEY_ESC)
-		close_game(KEY_ESC, game);
-	return (1);
+	game->invalid_map_resolution = 0;
+	game->invalid_map_texture_no = 0;
+	game->invalid_map_texture_so = 0;
+	game->invalid_map_texture_we = 0;
+	game->invalid_map_texture_ea = 0;
+	game->invalid_map_texture_sprite = 0;
+	game->invalid_map_floor = 0;
+	game->invalid_map_ceilling = 0;
 }
 
-int	mouse_hook(int button, int x, int y, t_game *game)
+static void	init_game_struct(t_game *game)
 {
-	printf("button:%d x:%d y:%d\n",button, x, y);
-	printf("%p", game->mlx);
-	return (1);
+	game->resolution_x = 0;
+	game->resolution_y = 0;
+	game->texture_no = ft_strdup("");
+	game->texture_so = ft_strdup("");
+	game->texture_we = ft_strdup("");
+	game->texture_ea = ft_strdup("");
+	game->texture_sprite = ft_strdup("");
+	game->floor.red = -1;
+	game->floor.green = -1;
+	game->floor.blue = -1;
+	game->ceilling.red = -1;
+	game->ceilling.green = -1;
+	game->ceilling.blue = -1;
+	init_invalid_map(game);
 }
-
-void	my_mlx_pixelput(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-void	rungame()
-{
-	t_data	img;
-	t_game	game;
-	int sizex;
-	int sizey;
-
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 1000, 1000, "Cub3D!");
-	img.img = mlx_new_image(game.mlx, 500, 500);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_lenght, &img.endian);
-
-	for (int x=0; x < 200; x++)
-	{
-		my_mlx_pixelput(&img, x, 5, 0x00FF0000);
-	}
-	for (int x = 0; x < 200; x++)
-	{
-		my_mlx_pixelput(&img, 5, x, 0x00FFFF00);
-	}
-	mlx_put_image_to_window(game.mlx, game.win, img.img, 0, 0);
-
-	//printf(ANSI_B_CYAN "test libft %d\n" ANSI_RESET, ft_atoi("123"));
-
-	mlx_get_screen_size(game.mlx, &sizex, &sizey);
-	printf("Resolution - x:%d y:%d\n", sizex, sizey);
-	printf("EXIT CODE:%d\n", X_EVENT_KEY_EXIT);
-	
-	mlx_key_hook(game.win, key_hook, &game);
-	mlx_mouse_hook(game.win, mouse_hook, &game);
-
-	mlx_hook(game.win, X_EVENT_KEY_EXIT, 0, &close_game, &game);
-	//mlx_loop_hook(game.mlx, &main_loop, &game);
-	mlx_loop(game.mlx);
-}
-
-
 
 int	main(int argc, char **argv)
 {
+	t_game	game;
+
 	validate_args(argc, argv);
-	openmap(argv[1]);
+	init_game_struct(&game);
+	open_map_file(argv[1], &game);
 	//rungame();
-	return(0);
+	free_game(&game);
+	return (0);
 }

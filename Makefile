@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/17 19:00:24 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/17 22:13:53 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,11 @@ SRC_DIR = src
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 SRC = cub3d.c \
-		openmap.c \
-		get_next_line.c get_next_line_utils.c
+		validate_args.c \
+		map/open_map_file.c \
+		map/parse_map.c \
+		get_next_line.c \
+		game/game.c
 
 all: $(NAME)
 
@@ -53,6 +56,8 @@ $(OBJ): | $(OBJ_DIR)
 $(OBJ_DIR):
 	@echo $(ANSI_B_BGREEN) "create obj folder if needed" $(ANSI_RESET)$(ANSI_F_BBLACK)
 	mkdir -p $@
+	mkdir -p obj/game
+	mkdir -p obj/map
 	@echo $(ANSI_RESET) ""
 
 clean:
@@ -105,9 +110,10 @@ run: all
 	@echo $(ANSI_B_RED) "Running for debbuger without sanitize" $(ANSI_RESET)
 	./$(NAME) $(MAP)
 
-runv: all runs run
+runv: all
 	@echo $(ANSI_B_RED) "Valgrind RESULT" $(ANSI_RESET)
-	valgrind -q --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME)
+	# valgrind -q --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) $(MAP)
+	valgrind ./$(NAME) $(MAP)
 
 runs: all
 	@echo $(ANSI_B_RED) "Running with sanitize" $(ANSI_RESET)

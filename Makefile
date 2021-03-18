@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/17 22:13:53 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/18 15:36:28 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,13 @@ SRC_DIR = src
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
 SRC = cub3d.c \
+		utils/check_extension.c \
+		utils/print_errors.c \
+		utils/get_next_line.c \
+		utils/string_validate_characters.c \
 		validate_args.c \
 		map/open_map_file.c \
 		map/parse_map.c \
-		get_next_line.c \
 		game/game.c
 
 all: $(NAME)
@@ -58,6 +61,7 @@ $(OBJ_DIR):
 	mkdir -p $@
 	mkdir -p obj/game
 	mkdir -p obj/map
+	mkdir -p obj/utils
 	@echo $(ANSI_RESET) ""
 
 clean:
@@ -121,3 +125,64 @@ runs: all
 	./cub3DS $(MAP)
 
 MAP = maps/romeu.cub
+
+invalid: runs
+	./cub3DS test.cub
+	./cub3DS test.cub2
+	./cub3DS
+	./cub3DS test.cub as
+
+	./cub3DS invalid_maps/invalid_res_000.cub
+	./cub3DS invalid_maps/invalid_res_001.cub
+	./cub3DS invalid_maps/invalid_res_002.cub
+	./cub3DS invalid_maps/invalid_res_003.cub
+	./cub3DS invalid_maps/invalid_res_004.cub
+	./cub3DS invalid_maps/invalid_res_005.cub
+	./cub3DS invalid_maps/invalid_res_006.cub
+	./cub3DS invalid_maps/invalid_res_007.cub
+	./cub3DS invalid_maps/invalid_res_008.cub
+	./cub3DS invalid_maps/invalid_res_009.cub
+	./cub3DS invalid_maps/invalid_res_010.cub
+	./cub3DS invalid_maps/invalid_res_011.cub
+	./cub3DS invalid_maps/invalid_res_012.cub
+	./cub3DS invalid_maps/invalid_res_013.cub
+	./cub3DS invalid_maps/invalid_res_014.cub
+	./cub3DS invalid_maps/invalid_res_015.cub
+	./cub3DS invalid_maps/invalid_res_016.cub
+	./cub3DS invalid_maps/invalid_res_017.cub
+	./cub3DS invalid_maps/invalid_res_018.cub
+	./cub3DS invalid_maps/invalid_res_019.cub
+	./cub3DS invalid_maps/invalid_res_020.cub
+	./cub3DS invalid_maps/invalid_res_021.cub
+	./cub3DS invalid_maps/invalid_res_022.cub
+	./cub3DS invalid_maps/invalid_res_023.cub
+	./cub3DS invalid_maps/invalid_res_024.cub
+	./cub3DS invalid_maps/invalid_res_025.cub
+	./cub3DS invalid_maps/invalid_res_026.cub
+	./cub3DS invalid_maps/invalid_res_027.cub
+	./cub3DS invalid_maps/invalid_res_028.cub
+	./cub3DS invalid_maps/invalid_res_029.cub
+
+	./cub3DS invalid_maps/invalid_tex_EA_000.cub
+	./cub3DS invalid_maps/invalid_tex_EA_001.cub
+	./cub3DS invalid_maps/invalid_tex_EA_002.cub
+	./cub3DS invalid_maps/invalid_tex_EA_003.cub
+	./cub3DS invalid_maps/invalid_tex_EA_004.cub
+	./cub3DS invalid_maps/invalid_tex_EA_005.cub
+	./cub3DS invalid_maps/invalid_tex_EA_006.cub
+	./cub3DS invalid_maps/invalid_tex_EA_007.cub
+	./cub3DS invalid_maps/invalid_tex_EA_008.cub
+	./cub3DS invalid_maps/invalid_tex_EA_009.cub
+	./cub3DS invalid_maps/invalid_tex_EA_010.cub
+	./cub3DS invalid_maps/invalid_tex_EA_011.cub
+	./cub3DS invalid_maps/invalid_tex_EA_012.cub
+	./cub3DS invalid_maps/invalid_tex_EA_013.cub
+	./cub3DS invalid_maps/invalid_tex_EA_014.cub
+	./cub3DS invalid_maps/invalid_tex_EA_015.cub
+	./cub3DS invalid_maps/invalid_tex_EA_016.cub
+	./cub3DS invalid_maps/invalid_tex_EA_017.cub
+	./cub3DS invalid_maps/invalid_tex_EA_018.cub
+	./cub3DS invalid_maps/invalid_tex_EA_019.cub
+	./cub3DS invalid_maps/invalid_tex_EA_020.cub
+	./cub3DS invalid_maps/invalid_tex_EA_021.cub
+	./cub3DS invalid_maps/invalid_tex_EA_022.cub

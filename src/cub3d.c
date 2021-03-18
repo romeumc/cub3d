@@ -6,13 +6,13 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 01:36:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:28:36 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_cub3d.h"
 
-static void	free_game(t_game *game)
+void	free_game(t_game *game)
 {
 	free(game->texture_no);
 	free(game->texture_so);
@@ -23,14 +23,15 @@ static void	free_game(t_game *game)
 
 static void	init_invalid_map(t_game *game)
 {
-	game->invalid_map_resolution = 0;
-	game->invalid_map_texture_no = 0;
-	game->invalid_map_texture_so = 0;
-	game->invalid_map_texture_we = 0;
-	game->invalid_map_texture_ea = 0;
-	game->invalid_map_texture_sprite = 0;
-	game->invalid_map_floor = 0;
-	game->invalid_map_ceilling = 0;
+	game->valid_map_resolution = -1;
+	game->valid_map_texture_no = -1;
+	game->valid_map_texture_so = -1;
+	game->valid_map_texture_we = -1;
+	game->valid_map_texture_ea = -1;
+	game->valid_map_texture_sprite = -1;
+	game->valid_map_floor = -1;
+	game->valid_map_ceilling = -1;
+	game->valid_map = -1;
 }
 
 static void	init_game_struct(t_game *game)
@@ -58,7 +59,7 @@ int	main(int argc, char **argv)
 	validate_args(argc, argv);
 	init_game_struct(&game);
 	open_map_file(argv[1], &game);
-	//rungame();
+	rungame();
 	free_game(&game);
 	return (0);
 }

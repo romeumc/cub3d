@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:55:42 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 01:09:45 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:33:46 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,26 @@ typedef struct s_game
 	char	*texture_sprite;
 	t_color	floor;
 	t_color	ceilling;
-	int		invalid_map_resolution;
-	int		invalid_map_texture_no;
-	int		invalid_map_texture_so;
-	int		invalid_map_texture_we;
-	int		invalid_map_texture_ea;
-	int		invalid_map_texture_sprite;
-	int		invalid_map_floor;
-	int		invalid_map_ceilling;
+	int		valid_map_resolution;
+	int		valid_map_texture_no;
+	int		valid_map_texture_so;
+	int		valid_map_texture_we;
+	int		valid_map_texture_ea;
+	int		valid_map_texture_sprite;
+	int		valid_map_floor;
+	int		valid_map_ceilling;
+	int		valid_map;
 }	t_game;
 
+void	print_error(char *s1, char *s2);
+int		check_extension(char *argv, char *extension);
 void	validate_args(int argc, char **argv);
+int		validate_string_chars(char *str, char *characters);
 int		get_next_line(int fd, char **line);
 int		open_map_file(char *filename, t_game *game);
 int		parse_map(char *line, t_game *game);
 void	rungame(void);
+void	free_game(t_game *game);
 // size_t	len(const char *s);
 // void	ft_bzero(void *s, size_t n);
 // char	*ft_strcpy(char *dest, const char *src);

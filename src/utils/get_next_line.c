@@ -6,11 +6,11 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 22:15:31 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/17 18:57:52 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:19:34 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_cub3d.h"
+#include "../../include/ft_cub3d.h"
 #include <stdlib.h>
 
 int	read_buff(char *buffer, char **line, int buff_len, int pos)

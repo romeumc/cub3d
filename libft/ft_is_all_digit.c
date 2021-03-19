@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 13:21:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 13:22:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/19 00:24:52 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_is_all_digit(char *str)
 	while (i < ft_strlen(str))
 	{
 		if (!(ft_isdigit(str[i])))
-			return ("0");
+			return ("-1");
 		i++;
 	}
 	return (str);

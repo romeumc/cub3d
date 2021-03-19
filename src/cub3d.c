@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 14:28:36 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/18 19:48:21 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	free_game(t_game *game)
 
 static void	init_invalid_map(t_game *game)
 {
-	game->valid_map_resolution = -1;
-	game->valid_map_texture_no = -1;
-	game->valid_map_texture_so = -1;
-	game->valid_map_texture_we = -1;
-	game->valid_map_texture_ea = -1;
-	game->valid_map_texture_sprite = -1;
-	game->valid_map_floor = -1;
-	game->valid_map_ceilling = -1;
+	game->valid_resolution = -1;
+	game->valid_texture_no = -1;
+	game->valid_texture_so = -1;
+	game->valid_texture_we = -1;
+	game->valid_texture_ea = -1;
+	game->valid_texture_sprite = -1;
+	game->valid_floor = -1;
+	game->valid_ceilling = -1;
 	game->valid_map = -1;
 }
 

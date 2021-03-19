@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 21:30:52 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 13:25:12 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/18 23:17:54 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ unsigned long long	ft_recursive_power_ll(unsigned long long nb, int power);
 unsigned long long	ft_iterative_power_ll(unsigned long long nb, int power);
 char				*ft_is_all_digit(char *str);
 void				ft_free_split(char **str);
+int					ft_split_count(char **str);
 
 #endif

@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_map.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/20 00:24:52 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/19 22:04:09 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/19 22:48:36 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+#ifndef FT_MAP_H
+# define FT_MAP_H
 
-void	free_game(t_game *game)
-{
-	free(game->t_no.path);
-	free(game->t_so.path);
-	free(game->t_we.path);
-	free(game->t_ea.path);
-	free(game->t_sprite.path);
-}
+# include <errno.h>		//permit errors
+# include <string.h>	//allow for function strerrror
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
+# include "ft_structs.h"
 
-	validate_args(argc, argv);
-	init_structures(&game);
-	open_map_file(argv[1], &game);
-	rungame(&game);
-	free_game(&game);
-	return (0);
-}
+void	init_structures(t_game *game);
+int		parse_map(char *line, t_game *game);
+int		validate_map_line(char *str, char *characters);
+void	print_error(char *s1, char *s2);
+void	check_map_errors(t_game *game);
+
+#endif

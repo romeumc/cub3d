@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_map_file.c                                    :+:      :+:    :+:   */
+/*   validate_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 21:49:07 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 22:27:33 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/17 21:44:52 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/19 22:20:39 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-int	open_map_file(char *filename, t_game *game)
+void	validate_args(int argc, char **argv)
 {
-	int		fd;
-	int		j;
-	char	*line;
-	int		result;
-
-	line = 0;
-	result = 0;
-	j = 1;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (argc == 1 || argc > 3)
 	{
-		print_error(strerror(errno), "");
-		exit (0);
+		print_error("Wrong usage,",
+			"must use: cub3D <path to map.cub> [--save]");
+		exit(0);
 	}
-	while (get_next_line(fd, &line) > 0 && result == 0)
+	else if (argc == 3 && !ft_strequ(argv[2], "--save"))
 	{
-		result = parse_map(line, game);
-		free(line);
-		j++;
+		print_error("Wrong usage,", "second parameter should be \"--save\"");
+		exit(0);
 	}
-	free(line);
-	close(fd);
-	check_map_errors(game);
-	return (0);
+	else if (argc == 2 && check_extension(argv[1], ".cub") == 0)
+	{
+		print_error("Wrong map extension,", "must be [.cub]");
+		exit(0);
+	}
 }

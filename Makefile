@@ -6,12 +6,11 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/19 01:11:26 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/19 23:55:57 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
-HEADER = include/ft_cub3d.h
 
 UNAME := $(shell uname -s)
 ifeq ($(UNAME), Linux)
@@ -21,8 +20,6 @@ else
 	MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 endif
 
-# MLX_FLAGS = -lbsd -lmlx -lXext -lX11 -lm
-
 LIBFT = libft/libft.a
 CFLAGS = -Wall -Wextra -Werror -g
 AR = ar rcsv
@@ -30,19 +27,36 @@ OBJ_DIR = obj
 SRC_DIR = src
 OBJ = $(SRC:%.c=$(OBJ_DIR)/%.o)
 
+HEADER = ft_ansi.h \
+		ft_cub3d.h \
+		ft_structs.h \
+		ft_linux_keys.h \
+		ft_mac_keys.h \
+		ft_utils.h \
+		ft_map.h \
+		get_next_line.h
+		
 SRC = cub3d.c \
 		utils/check_extension.c \
-		utils/print_errors.c \
 		utils/get_next_line.c \
-		utils/string_validate_characters.c \
-		validate_args.c \
+		utils/count_specific_char.c \
+		utils/validate_args.c \
+		utils/init_structures.c \
+		map/print_map_errors.c \
 		map/open_map_file.c \
 		map/parse_map.c \
+		map/validate_map_line.c \
 		game/game.c
 
 all: $(NAME)
 
-$(NAME): $(HEADER) $(OBJ)
+
+printcompile:
+	@echo $(ANSI_B_BGREEN) "compile cub3d objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
+resetprint:
+	@echo $(ANSI_RESET)
+
+$(NAME): printcompile $(OBJ) resetprint
 	@echo $(ANSI_B_BGREEN) "compile libft" $(ANSI_RESET)$(ANSI_F_BBLACK)
 	$(MAKE) all -C libft
 	@echo $(ANSI_RESET) ""
@@ -50,19 +64,10 @@ $(NAME): $(HEADER) $(OBJ)
 	gcc $(CFLAGS) $(OBJ) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	@echo $(ANSI_RESET) ""
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@echo $(ANSI_B_BGREEN) "compile ft_printf objects" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	gcc $(CFLAGS) $(SYSTEM) -include $(HEADER) -c $< -o $@
-	@echo $(ANSI_RESET)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(addprefix inc/,$(HEADER))
+	mkdir -p $(dir $@)
+	gcc $(CFLAGS) $(SYSTEM) -Iinc -c $< -o $@
 
-$(OBJ): | $(OBJ_DIR)
-$(OBJ_DIR):
-	@echo $(ANSI_B_BGREEN) "create obj folder if needed" $(ANSI_RESET)$(ANSI_F_BBLACK)
-	mkdir -p $@
-	mkdir -p obj/game
-	mkdir -p obj/map
-	mkdir -p obj/utils
-	@echo $(ANSI_RESET) ""
 
 clean:
 	@echo $(ANSI_B_RED) "clean" $(ANSI_RESET)$(ANSI_F_BRED)
@@ -96,11 +101,11 @@ lib:
 
 norm:
 	@echo $(ANSI_B_RED) "norminette v3" $(ANSI_RESET)
-	@norminette $(HEADER) $(addprefix src/,$(SRC))
+	@norminette $(addprefix inc/,$(HEADER)) $(addprefix src/,$(SRC))
 
 norm2:
 	@echo $(ANSI_B_RED) "norminette v2" $(ANSI_RESET)
-	@norminette2 $(HEADER) $(addprefix src/,$(SRC))
+	@norminette2 $(addprefix inc/,$(HEADER)) $(addprefix src/,$(SRC))
 
 libnorm:
 	@echo $(ANSI_B_RED) "libft norminette" $(ANSI_RESET)
@@ -124,4 +129,5 @@ runs: all
 	gcc $(CFLAGS) -fsanitize=address $(OBJ) $(LIBFT) $(MLX_FLAGS) -o cub3DS
 	./cub3DS $(MAP)
 
-MAP = maps/romeu.cub
+MAP = resources/maps/romeu.cub
+#MAP = invalid_maps/invalid_map_area_000.cub

@@ -6,14 +6,13 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 22:15:31 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 13:19:34 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/19 22:21:41 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/ft_cub3d.h"
-#include <stdlib.h>
+#include "ft_cub3d.h"
 
-int	read_buff(char *buffer, char **line, int buff_len, int pos)
+static int	read_buff(char *buffer, char **line, int buff_len, int pos)
 {
 	int	i;
 	int	j;
@@ -40,7 +39,7 @@ int	read_buff(char *buffer, char **line, int buff_len, int pos)
 	return (0);
 }
 
-void	clean_extra_buffer(char *buffer, int pos, int buffer_size)
+static void	clean_extra_buffer(char *buffer, int pos, int buffer_size)
 {
 	while (pos < buffer_size)
 	{

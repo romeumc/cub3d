@@ -6,11 +6,11 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 13:14:01 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 01:38:04 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/19 22:21:52 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/ft_cub3d.h"
+#include "ft_cub3d.h"
 
 int	check_extension(char *argv, char *extension)
 {
@@ -31,13 +31,16 @@ int	check_extension(char *argv, char *extension)
 
 int	check_valid_file(char *file, char *extension)
 {
-	int fd;
+	int	fd;
 
 	if (check_extension(file, extension))
 	{
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
+		{
+			close(fd);
 			return (-4);
+		}
 		return (1);
 	}
 	else

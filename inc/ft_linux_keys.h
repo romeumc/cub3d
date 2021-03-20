@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   ft_linux_keys.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/20 00:24:52 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/19 20:08:06 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/19 20:30:33 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_cub3d.h"
+#ifndef FT_LINUX_KEYS_H
+# define FT_LINUX_KEYS_H
 
-void	free_game(t_game *game)
-{
-	free(game->t_no.path);
-	free(game->t_so.path);
-	free(game->t_we.path);
-	free(game->t_ea.path);
-	free(game->t_sprite.path);
-}
+# define KEY_EXIT		33 //Exit program key Linux
+# define KEY_ESC		65307
+# define KEY_A			97
+# define KEY_S			115
+# define KEY_D			100
+# define KEY_W			119
+# define ARROW_RIGHT	65363
+# define ARROW_LEFT		65361
 
-int	main(int argc, char **argv)
-{
-	t_game	game;
-
-	validate_args(argc, argv);
-	init_structures(&game);
-	open_map_file(argv[1], &game);
-	rungame(&game);
-	free_game(&game);
-	return (0);
-}
+#endif

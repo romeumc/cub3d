@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   treat_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/20 00:24:52 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/19 13:54:32 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/19 21:25:10 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	free_game(t_game *game)
+int		get_length_with_tabs(char *line)
 {
-	free(game->t_no.path);
-	free(game->t_so.path);
-	free(game->t_we.path);
-	free(game->t_ea.path);
-	free(game->t_sprite.path);
+	int	i;
+
+	i = 0;
+	while (line[i] != '\0')
+	{
+		if (line[i] == '\t')
+			i += 3;
+		i++;
+	}
 }
 
-int	main(int argc, char **argv)
+void	save_map_line(char *line, t_game game)
 {
-	t_game	game;
-
-	validate_args(argc, argv);
-	init_structures(&game);
-	open_map_file(argv[1], &game);
-	rungame(&game);
-	free_game(&game);
-	return (0);
+	
 }

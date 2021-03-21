@@ -6,13 +6,13 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 13:24:05 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/18 23:16:33 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/20 18:24:31 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_split(char **str)
+void	ft_free_array_array(char **str)
 {
 	int	i;
 

@@ -1,4 +1,4 @@
-R 2500 1600
+R 1500 600
 
 NO ./resources/textures/redbrick.xpm
 SO ./resources/textures/eagle.xpm

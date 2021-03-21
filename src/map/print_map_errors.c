@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_errors.c                                     :+:      :+:    :+:   */
+/*   print_map_errors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:38:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 22:21:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 20:51:21 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	print_error(char *s1, char *s2)
 	printf(ANSI_F_BRED "%s %s\n" ANSI_RESET, s1, s2);
 }
 
-static void	print_map_error_description(int error, char *field)
+static void	print_error_description(int error, char *field)
 {
-	if (error == -1)
+	if (error == 0)
 		print_error(field, "- Missing");
-	else if (error == 0)
+	else if (error == -1)
 		print_error(field, "- Type errors");
 	else if (error == -2)
 		print_error(field, "- Found duplicate");
@@ -30,22 +30,28 @@ static void	print_map_error_description(int error, char *field)
 		print_error(field, "- Found after map");
 	else if (error == -4)
 		print_error(field, "- File/Directory missing");
+	else if (error <= -5)
+		print_error(field, "- Not closed");
 }
 
 static void	print_map_errors(t_game *game)
 {
 	if (game->other_error == -1)
-		print_error("Found line with errors", "or map not closed");
+		print_error("Found line with error", "");
+	else if (game->other_error == -2)
+		print_error("Map is NOT closed", "");
 	else
 	{
-		print_map_error_description(game->resolution.valid, "Resolution");
-		print_map_error_description(game->t_no.valid, "NO Texture");
-		print_map_error_description(game->t_so.valid, "SO Texture");
-		print_map_error_description(game->t_we.valid, "WE Texture");
-		print_map_error_description(game->t_ea.valid, "EA Texture");
-		print_map_error_description(game->t_sprite.valid, "SPRITE Texture");
-		print_map_error_description(game->floor.valid, "Floor Color");
-		print_map_error_description(game->ceilling.valid, "Ceilling Color");
+		print_error_description(game->resolution.valid, "Resolution");
+		print_error_description(game->t_no.valid, "NO Texture");
+		print_error_description(game->t_so.valid, "SO Texture");
+		print_error_description(game->t_we.valid, "WE Texture");
+		print_error_description(game->t_ea.valid, "EA Texture");
+		print_error_description(game->t_sprite.valid, "SPRITE Texture");
+		print_error_description(game->floor.valid, "Floor Color");
+		print_error_description(game->ceilling.valid, "Ceilling Color");
+		print_error_description(game->map.valid, "Map");
+		print_error_description(game->player.valid, "Player");
 	}
 }
 
@@ -72,6 +78,8 @@ static void	debug___________________________game(t_game *game, int flag)
 		printf("valid map texture_sprite: %d\n", game->t_sprite.valid);
 		printf("valid map floor: %d\n", game->floor.valid);
 		printf("valid map ceilling: %d\n", game->ceilling.valid);
+		printf("valid player: %d - direction:%c", game->player.valid, game->player.direction);
+		printf("valid map: %d", game->map.valid);
 		printf(ANSI_RESET "\n");
 	}
 }
@@ -87,8 +95,10 @@ void	check_map_errors(t_game *game)
 		|| game->floor.valid <= 0
 		|| game->ceilling.valid <= 0
 		|| game->other_error < 0
-		|| game->valid_map < 0)
+		|| game->map.valid <= 0
+		|| game->player.valid <= 0)
 	{
+		//print_array(game);
 		print_map_errors(game);
 		free_game(game);
 		exit(0);

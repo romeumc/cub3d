@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:58:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 22:51:59 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 20:50:00 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	get_resolution(char *line, t_game *game)
 {
 	char	**temp;
 
-	if (game->valid_map == -1)
+	if (game->map.valid == 0)
 	{
 		temp = ft_split(line, ' ');
 		if (ft_split_count(temp) == 3)
 		{
-			if (game->resolution.valid == -1)
+			if (game->resolution.valid == 0)
 			{
 				game->resolution.x = ft_atoi(ft_is_all_digit(temp[1]));
 				game->resolution.y = ft_atoi(ft_is_all_digit(temp[2]));
@@ -31,8 +31,8 @@ static void	get_resolution(char *line, t_game *game)
 				game->resolution.valid = -2;
 		}
 		if (!(game->resolution.x > 0 && game->resolution.y > 0))
-			game->resolution.valid = 0;
-		ft_free_split(temp);
+			game->resolution.valid = -1;
+		ft_free_array_array(temp);
 	}
 	else
 		game->resolution.valid = -3;
@@ -42,12 +42,12 @@ static void	get_texture(char *line, t_texture *texture, t_game *game)
 {
 	char	**temp;
 
-	if (game->valid_map == -1)
+	if (game->map.valid == 0)
 	{
 		temp = ft_split(line, ' ');
 		if (ft_split_count(temp) == 2)
 		{
-			if (texture->valid == -1)
+			if (texture->valid == 0)
 			{
 				free(texture->path);
 				texture->path = ft_strdup(temp[1]);
@@ -57,8 +57,8 @@ static void	get_texture(char *line, t_texture *texture, t_game *game)
 				texture->valid = -2;
 		}
 		if (ft_strequ(texture->path, ""))
-			texture->valid = 0;
-		ft_free_split(temp);
+			texture->valid = -1;
+		ft_free_array_array(temp);
 	}
 	else
 		texture->valid = -3;
@@ -82,22 +82,21 @@ static void	get_color(char *line, t_color *color, t_game *game)
 	char	**temp;
 	char	**rgb_color;
 
-	if (game->valid_map == -1)
+	if (game->map.valid == 0)
 	{
-		if (color->valid == -1)
+		if (color->valid == 0)
 		{
 			temp = ft_split(line, ' ');
 			if (ft_split_count(temp) == 2 && count_specific_char(temp[1], ',') == 2)
 			{
 				rgb_color = ft_split(temp[1], ',');
-				if (ft_split_count(rgb_color) == 3
-					&& color->red == -1 && color->green == -1 && color->blue == -1)
+				if (ft_split_count(rgb_color) == 3)
 					color->valid = check_and_save_rgb(color, rgb_color);
-				ft_free_split(rgb_color);
+				ft_free_array_array(rgb_color);
 			}
 			else
-				color->valid = 0;
-			ft_free_split(temp);
+				color->valid = -1;
+			ft_free_array_array(temp);
 		}
 		else
 			color->valid = -2;
@@ -106,39 +105,43 @@ static void	get_color(char *line, t_color *color, t_game *game)
 		color->valid = -3;
 }
 
-// game.valid_map = -1 ==> invalid
-// game.valid_map =  0 ==> start detected
-// game.valid_map =  1 ==> line closed
-// game.valid_map =  2 ==> end detected
+// game.map.valid = 0 ==> invalid
+// game.map.valid = -1 ==> start detected
+// game.map.valid =  1 ==> line closed
+// game.map.valid =  2 ==> end detected
 
 int	parse_map2(char *line, t_game *game)
 {
-	if (validate_map_line(line, "\t 1") == 1 && game->valid_map == -1)
+	if (validate_map_line(line, "\t 1") == 1 && game->map.valid == 0)
 	{
 		printf(ANSI_F_CYAN "MAP START " ANSI_RESET);
-		game->valid_map = 0;
-		//save_map_line(line, game);
+		game->map.valid = -5;
+		save_map_line(line, &game->map, game);
 	}
-	else if (validate_map_line(line, "\t 1") == 1 && game->valid_map == 0)
+	else if (validate_map_line(line, "\t 1") == 1 && game->map.valid == -6)
 	{
 		printf(ANSI_F_CYAN "MAP END " ANSI_RESET);
-		game->valid_map = 0;
+		game->map.valid = 1;
+		save_map_line(line, &game->map, game);
 	}
-	else if (validate_map_line(line, "\t 012SNWE") == 1 && game->valid_map == 0)
+	else if (validate_map_line(line, "\t 012SNWE") == 1 && game->map.valid <= -5)
 	{
 		printf(ANSI_F_GREEN "MAP " ANSI_RESET);
+		game->map.valid = -6;
+		save_map_line(line, &game->map, game);
 	}
 	else
 	{
 		printf(ANSI_F_YELLOW "ERROR " ANSI_RESET);
 		game->other_error = -1;
-		return (-1);
+		return (EXIT_FAILURE);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	parse_map(char *line, t_game *game)
 {
+	//printf("[%ld] [%s]\n", ft_strlen(line), line);
 	if (ft_strncmp(line, "R ", 2) == 0)
 		get_resolution(line, game);
 	else if (ft_strncmp(line, "NO ", 3) == 0)
@@ -159,9 +162,9 @@ int	parse_map(char *line, t_game *game)
 		printf(ANSI_F_BYELLOW "BLANK LINE " ANSI_RESET);
 	else 
 	{
-		if(parse_map2(line, game) == -1)
-			return (-1);
+		if(parse_map2(line, game) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
 	}
-	//printf("[%ld] |%s|\n", ft_strlen(line), line);
-	return (0);
+	//printf("[%ld] [%s]\n", ft_strlen(line), line);
+	return (EXIT_SUCCESS);
 }

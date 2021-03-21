@@ -6,20 +6,27 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/20 00:24:52 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 18:15:03 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	free_game(t_game *game)
-{
-	free(game->t_no.path);
-	free(game->t_so.path);
-	free(game->t_we.path);
-	free(game->t_ea.path);
-	free(game->t_sprite.path);
-}
+// void print_array(t_game *game)
+// {
+// 	int	i;
+// 	//int	j;
+
+// 	i = 0;
+// 	//j = 0;
+// 	printf("****************\n");
+// 	while (game->map.grid[i] != NULL)
+// 	{
+// 		printf("%s\n", game->map.grid[i]);
+// 		i++;
+// 	}
+// 	printf("++++++++++++++++");
+// }
 
 int	main(int argc, char **argv)
 {
@@ -29,6 +36,5 @@ int	main(int argc, char **argv)
 	init_structures(&game);
 	open_map_file(argv[1], &game);
 	rungame(&game);
-	free_game(&game);
 	return (0);
 }

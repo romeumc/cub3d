@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:43:53 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 22:52:18 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/20 22:22:20 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 int		count_specific_char(char *str, char c);
 int		check_valid_file(char *file, char *extension);
 int		check_extension(char *argv, char *extension);
+
 
 #endif

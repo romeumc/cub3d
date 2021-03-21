@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:36:43 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 22:53:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 20:26:13 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,37 @@
 static void	init_texture(t_texture *texture)
 {
 	texture->path = ft_strdup("");
-	texture->valid = -1;
+	texture->valid = 0;
 }
 
 static void	init_color(t_color *color)
 {
-	color->red = -1;
-	color->green = -1;
-	color->blue = -1;
-	color->valid = -1;
+	// color->red = -1;
+	// color->green = -1;
+	// color->blue = -1;
+	color->valid = 0;
 }
 
 static void	init_resolution(t_resolution *resolution)
 {
 	resolution->x = 0;
 	resolution->y = 0;
-	resolution->valid = -1;
+	resolution->valid = 0;
+}
+
+static void	init_map(t_map *map)
+{
+	map->line = 0;
+	map->col = 0;
+	map->valid = 0;
+	map->grid = malloc(sizeof(char *) * 200);
+	if (map->grid == NULL)
+		exit (0);
 }
 
 void	init_structures(t_game *game)
 {
-	game->player = '0';
+	game->player.valid = 0;
 	init_resolution(&game->resolution);
 	init_texture(&game->t_no);
 	init_texture(&game->t_so);
@@ -44,6 +54,6 @@ void	init_structures(t_game *game)
 	init_texture(&game->t_sprite);
 	init_color(&game->floor);
 	init_color(&game->ceilling);
-	game->valid_map = -1;
+	init_map(&game->map);
 	game->other_error = 0;
 }

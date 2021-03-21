@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/19 23:55:57 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/21 21:49:31 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC = cub3d.c \
 		map/open_map_file.c \
 		map/parse_map.c \
 		map/validate_map_line.c \
+		map/save_map_line.c \
 		game/game.c
 
 all: $(NAME)
@@ -130,4 +131,5 @@ runs: all
 	./cub3DS $(MAP)
 
 MAP = resources/maps/romeu.cub
-#MAP = invalid_maps/invalid_map_area_000.cub
+#MAP = resources/maps/test5.cub
+MAP = resources/maps/invalid_map_area_008.cub

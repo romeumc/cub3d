@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 20:06:41 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 17:26:43 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,24 @@ typedef struct s_resolution
 
 typedef struct s_map
 {
-	int		lines;
-	int		cols;
-	char	**map;
-}	t_grid;
+	int		line;
+	size_t	col;
+	char	**grid;
+	int		valid;
+}	t_map;
+
+typedef struct s_player
+{
+	char	direction;
+	int		valid;
+}	t_player;
 
 typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
-	char			player;
-	t_grid			grid;
+	t_player		player;
+	t_map			map;
 	t_resolution	resolution;
 	t_texture		t_no;
 	t_texture		t_so;
@@ -64,7 +71,6 @@ typedef struct s_game
 	t_texture		t_sprite;	
 	t_color			floor;
 	t_color			ceilling;
-	int				valid_map;
 	int				other_error;
 	t_data			img;
 }	t_game;

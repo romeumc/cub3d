@@ -6,17 +6,31 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:03:29 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 21:24:21 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 20:28:54 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-int	close_game(int keycode, t_game *game)
+void	free_game(t_game *game)
 {
-	printf("Hello from close: %d\n", keycode);
-	printf("%p", game->mlx);
-	//mlx_destroy_window(game->mlx, game->win);
+	if (game->t_no.valid != 0)
+		free(game->t_no.path);
+	if (game->t_so.valid != 0)
+		free(game->t_so.path);
+	if (game->t_we.valid != 0)
+		free(game->t_we.path);
+	if (game->t_ea.valid != 0)
+		free(game->t_ea.path);
+	if (game->t_sprite.valid != 0)
+		free(game->t_sprite.path);
+	if (game->map.valid != 0)
+		ft_free_array_array(game->map.grid);
+}
+
+int	close_game(t_game *game)
+{
+	free_game(game);
 	exit(0);
 }
 
@@ -24,7 +38,7 @@ int	key_hook(int keycode, t_game *game)
 {
 	printf("Hello from key_hook: %d\n", keycode);
 	if (keycode == KEY_ESC)
-		close_game(KEY_ESC, game);
+		close_game(game);
 	return (1);
 }
 
@@ -145,7 +159,7 @@ void	game_init(t_game *game)
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
 	};
-	memcpy(game->grid.map, map, sizeof(int) * ROWS * COLS);
+	memcpy(game->map.grid, map, sizeof(int) * ROWS * COLS);
 }
 
 // int		main_loop(t_game *game)

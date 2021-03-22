@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:38:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 20:51:21 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 21:54:00 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static void	debug___________________________game(t_game *game, int flag)
 		printf("valid map texture_sprite: %d\n", game->t_sprite.valid);
 		printf("valid map floor: %d\n", game->floor.valid);
 		printf("valid map ceilling: %d\n", game->ceilling.valid);
-		printf("valid player: %d - direction:%c", game->player.valid, game->player.direction);
+		printf("player:%d dir:%c", game->player.valid, game->player.direction);
 		printf("valid map: %d", game->map.valid);
 		printf(ANSI_RESET "\n");
 	}
@@ -98,7 +98,6 @@ void	check_map_errors(t_game *game)
 		|| game->map.valid <= 0
 		|| game->player.valid <= 0)
 	{
-		//print_array(game);
 		print_map_errors(game);
 		free_game(game);
 		exit(0);

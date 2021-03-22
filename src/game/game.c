@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:03:29 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 20:28:54 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 00:29:20 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	mouse_hook(int button, int x, int y, t_game *game)
 	return (1);
 }
 
-void	my_mlx_pixelput(t_data *data, int x, int y, int color)
+void	my_mlx_pixelput(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -62,6 +62,8 @@ void	my_mlx_pixelput(t_data *data, int x, int y, int color)
 # define TILE_SIZE 32
 # define ROWS 11
 # define COLS 15
+# define WIDTH COLS * TILE_SIZE
+# define HEIGHT ROWS * TILE_SIZE
 
 // //Draw the line by DDA algorithm
 // void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
@@ -77,7 +79,7 @@ void	my_mlx_pixelput(t_data *data, int x, int y, int color)
 // 	deltaY /= step;
 // 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
 // 	{
-// 		game->img.data[TO_COORD(x1, y1)] = 0xb3b3b3;
+// 		game->img.addr[TO_COORD(x1, y1)] = (char)0xb3b3b3;
 // 		x1 += deltaX;
 // 		y1 += deltaY;
 // 	}
@@ -117,7 +119,7 @@ void	my_mlx_pixelput(t_data *data, int x, int y, int color)
 // 		j = 0;
 // 		while (j < TILE_SIZE)
 // 		{
-// 			game->img.data[(y  + i) * WIDTH + x + j] = 0xFFFFFF;
+// 			game->img.addr[(y  + i) * WIDTH + x + j] = (char)0xFFFFFF;
 // 			j++;
 // 		}
 // 		i++;
@@ -135,7 +137,7 @@ void	my_mlx_pixelput(t_data *data, int x, int y, int color)
 // 		j = 0;
 // 		while (j < COLS)
 // 		{
-// 			if (game->map[i][j] == 1)
+// 			if (game->map.grid[i][j] == '1')
 // 				draw_rectangle(game, j, i);
 // 			j++;
 // 		}
@@ -144,23 +146,23 @@ void	my_mlx_pixelput(t_data *data, int x, int y, int color)
 // }
 
 
-void	game_init(t_game *game)
-{	
-	int map[ROWS][COLS] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-	{1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-	};
-	memcpy(game->map.grid, map, sizeof(int) * ROWS * COLS);
-}
+// void	game_init(t_game *game)
+// {	
+// 	int map[ROWS][COLS] = {
+// 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+// 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+// 	{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+// 	{1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
+// 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1},
+// 	{1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1},
+// 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+// 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+// 	{1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1},
+// 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+// 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+// 	};
+// 	memcpy(game->map.grid, map, sizeof(int) * ROWS * COLS);
+// }
 
 // int		main_loop(t_game *game)
 // {
@@ -200,8 +202,8 @@ void	rungame(t_game *game)
 	
 	mlx_key_hook(game->win, key_hook, game);
 	mlx_mouse_hook(game->win, mouse_hook, game);
-
 	mlx_hook(game->win, KEY_EXIT, 0, &close_game, game);
+
 	//mlx_loop_hook(game->mlx, &main_loop, game);
 	mlx_loop(game->mlx);
 }

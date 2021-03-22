@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/21 21:49:31 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/21 23:35:33 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,5 +131,5 @@ runs: all
 	./cub3DS $(MAP)
 
 MAP = resources/maps/romeu.cub
-#MAP = resources/maps/test5.cub
-MAP = resources/maps/invalid_map_area_008.cub
+MAP = resources/maps/test6.cub
+#MAP = resources/maps/invalid_map_area_010.cub

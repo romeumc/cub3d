@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:47:27 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 23:33:30 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 21:57:46 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 ** And make sure it as digit at least a '1'
 ** this doesn't garantee that the map is enclosed
 */
+
 int	validate_map_line(char *str, char *characters)
 {
 	size_t	i;

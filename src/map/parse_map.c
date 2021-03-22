@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:58:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 20:50:00 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 00:09:31 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ static void	get_color(char *line, t_color *color, t_game *game)
 		if (color->valid == 0)
 		{
 			temp = ft_split(line, ' ');
-			if (ft_split_count(temp) == 2 && count_specific_char(temp[1], ',') == 2)
+			if (ft_split_count(temp) == 2
+				&& count_specific_char(temp[1], ',') == 2)
 			{
 				rgb_color = ft_split(temp[1], ',');
 				if (ft_split_count(rgb_color) == 3)
@@ -114,25 +115,25 @@ int	parse_map2(char *line, t_game *game)
 {
 	if (validate_map_line(line, "\t 1") == 1 && game->map.valid == 0)
 	{
-		printf(ANSI_F_CYAN "MAP START " ANSI_RESET);
+		//printf(ANSI_F_CYAN "MAP START " ANSI_RESET);
 		game->map.valid = -5;
 		save_map_line(line, &game->map, game);
 	}
 	else if (validate_map_line(line, "\t 1") == 1 && game->map.valid == -6)
 	{
-		printf(ANSI_F_CYAN "MAP END " ANSI_RESET);
+		//printf(ANSI_F_CYAN "MAP END " ANSI_RESET);
 		game->map.valid = 1;
 		save_map_line(line, &game->map, game);
 	}
-	else if (validate_map_line(line, "\t 012SNWE") == 1 && game->map.valid <= -5)
+	else if (validate_map_line(line, "\t 0123SNWE") == 1 && game->map.valid <= -5)
 	{
-		printf(ANSI_F_GREEN "MAP " ANSI_RESET);
+		//printf(ANSI_F_GREEN "MAP " ANSI_RESET);
 		game->map.valid = -6;
 		save_map_line(line, &game->map, game);
 	}
 	else
 	{
-		printf(ANSI_F_YELLOW "ERROR " ANSI_RESET);
+		//printf(ANSI_F_YELLOW "ERROR " ANSI_RESET);
 		game->other_error = -1;
 		return (EXIT_FAILURE);
 	}
@@ -159,12 +160,11 @@ int	parse_map(char *line, t_game *game)
 	else if (ft_strncmp(line, "C ", 2) == 0)
 		get_color(line, &game->ceilling, game);
 	else if (ft_strequ(line, ""))
-		printf(ANSI_F_BYELLOW "BLANK LINE " ANSI_RESET);
-	else 
+		return (EXIT_SUCCESS);
+	else
 	{
-		if(parse_map2(line, game) == EXIT_FAILURE)
+		if (parse_map2(line, game) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 	}
-	//printf("[%ld] [%s]\n", ft_strlen(line), line);
 	return (EXIT_SUCCESS);
 }

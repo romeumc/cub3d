@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:54:32 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 21:32:16 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 23:04:14 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static size_t		get_length_with_tabs(char *line)
 {
 	size_t	i;
-	size_t j;
+	size_t	j;
 
 	i = 0;
 	j = 0;
@@ -44,10 +44,10 @@ static char	*ft_strdup_subst(const char *s, size_t len)
 		return (NULL);
 	while (s[++i] != '\0')
 	{
-		if(s[i] == '\t')
+		if (s[i] == '\t')
 		{
 			j = 0;
-			while(j < 4)
+			while (j < 4)
 				temp[k + j++] = ' ';
 			k += 4;
 		}
@@ -63,15 +63,25 @@ static char	*ft_strdup_subst(const char *s, size_t len)
 void	check_line_valid(t_map *map, t_player *player, t_game *game)
 {
 	size_t	line;
-	size_t	col;
+	int	col;
 
 	line = map->line;
 	col = 0;
-	while(col < map->col)
+	while (col < (int)map->col)
 	{
 		if (map->grid[line][col] != '1' && map->grid[line][col] != ' ')
 		{
-			if (map->grid[line][col - 1] == ' '
+			if (col == 0)
+			{
+				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
+				game->other_error = -2;
+			}
+			else if (col == (int)map->col - 1)
+			{
+				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
+				game->other_error = -2;
+			}
+			else if (map->grid[line][col - 1] == ' '
 				|| map->grid[line - 1][col - 1] == ' '
 				|| map->grid[line - 1][col] == ' '
 				|| map->grid[line - 1][col + 1] == ' '
@@ -90,7 +100,7 @@ void	check_line_valid(t_map *map, t_player *player, t_game *game)
 				}
 				else
 				{
-					printf(ANSI_F_RED "%c" ANSI_RESET, map->grid[line][col]);
+					printf(ANSI_B_RED "%c" ANSI_RESET, map->grid[line][col]);
 					player->valid = -2;
 				}
 			}
@@ -119,7 +129,8 @@ void	save_map_line(char *line, t_map *map, t_game *game)
 	map->grid[map->line] = ft_strdup_subst(line, map->col);
 	check_line_valid(map, &game->player, game);
 	printf("length:%3ld - grid.line:%3d ", ft_strlen(map->grid[map->line]), map->line);
-	printf(ANSI_B_BCYAN "[%s]" ANSI_RESET "\n", map->grid[map->line]);
+	//printf(ANSI_B_BCYAN "[%s]" ANSI_RESET "\n", map->grid[map->line]);
+	printf("\n");
 	map->line++;
 	map->grid[map->line] = NULL;
 	//return (1);

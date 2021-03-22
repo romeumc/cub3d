@@ -6,21 +6,21 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 17:26:43 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 00:26:24 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRUCTS_H
 # define FT_STRUCTS_H
 
-typedef struct s_data
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_lenght;
 	int		endian;
-}	t_data;
+}	t_img;
 
 typedef struct s_color
 {
@@ -61,6 +61,8 @@ typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
+	t_img			img;
+	int				other_error;
 	t_player		player;
 	t_map			map;
 	t_resolution	resolution;
@@ -71,8 +73,6 @@ typedef struct s_game
 	t_texture		t_sprite;	
 	t_color			floor;
 	t_color			ceilling;
-	int				other_error;
-	t_data			img;
 }	t_game;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:36:43 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 20:26:13 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/21 21:51:30 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ static void	init_texture(t_texture *texture)
 
 static void	init_color(t_color *color)
 {
-	// color->red = -1;
-	// color->green = -1;
-	// color->blue = -1;
 	color->valid = 0;
 }
 

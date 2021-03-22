@@ -4,8 +4,8 @@ SO ./resources/textures/eagle.xpm
 WE ./resources/textures/purplestone.xpm
 EA ./resources/textures/greystone.xpm
 S ./resources/textures/greenlight.xpm
-F 182, 192, 182
-C 192, 182, 182
+F 182,192,182
+C 192,182,182
 
 11
 111

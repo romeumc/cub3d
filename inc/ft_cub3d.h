@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:55:42 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 00:08:30 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 16:17:06 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../libft/libft.h"
 # include "ft_utils.h"
 # include "ft_map.h"
+# include "ft_game.h"
 
 # ifndef LINUX_COMPUTER
 #  include "ft_mac_keys.h"
@@ -26,12 +27,9 @@
 #  include "ft_linux_keys.h"
 # endif
 
-# define TO_COORD(X, Y) ((int)floor(Y) * WIDTH + (int)floor(X))
-
 void	validate_args(int argc, char **argv);
 void	open_map_file(char *filename, t_game *game);
 void	rungame(t_game *game);
-void	free_game(t_game *game);
 void	print_array(t_game *game);
 void	print_array1(t_game *game);
 

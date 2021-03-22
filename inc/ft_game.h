@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   ft_game.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/19 21:43:53 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 16:54:05 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/22 11:49:40 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/22 12:02:22 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
+#ifndef FT_GAME_H
+# define FT_GAME_H
 
-# include <fcntl.h>		//open
-# include <unistd.h>	//close write
-# include <stdlib.h>	//malloc free
-# include <stdio.h>		//printf
-# include <math.h>
+# include "ft_structs.h"
 
-# include "ft_ansi.h"
-# include "get_next_line.h"
-
-int		count_specific_char(char *str, char c);
-int		check_valid_file(char *file, char *extension);
-int		check_extension(char *argv, char *extension);
+int		close_game(t_game *game);
+void	free_game(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/21 23:35:33 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/22 16:56:47 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ HEADER = ft_ansi.h \
 		ft_mac_keys.h \
 		ft_utils.h \
 		ft_map.h \
+		ft_game.h \
 		get_next_line.h
 		
 SRC = cub3d.c \
@@ -42,12 +43,16 @@ SRC = cub3d.c \
 		utils/count_specific_char.c \
 		utils/validate_args.c \
 		utils/init_structures.c \
-		map/print_map_errors.c \
 		map/open_map_file.c \
 		map/parse_map.c \
 		map/validate_map_line.c \
 		map/save_map_line.c \
-		game/game.c
+		map/check_map_errors.c \
+		map/print_map_errors.c \
+		map/sqare_matrix.c \
+		map/check_RGB.c \
+		game/game.c \
+		game/close_game.c
 
 all: $(NAME)
 
@@ -131,5 +136,5 @@ runs: all
 	./cub3DS $(MAP)
 
 MAP = resources/maps/romeu.cub
-MAP = resources/maps/test6.cub
+MAP = resources/maps/test5.cub
 #MAP = resources/maps/invalid_map_area_010.cub

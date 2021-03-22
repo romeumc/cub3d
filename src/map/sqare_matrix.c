@@ -1,29 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.h                                         :+:      :+:    :+:   */
+/*   sqare_matrix.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/19 21:43:53 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 16:54:05 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/22 09:43:09 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/22 17:17:45 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_UTILS_H
-# define FT_UTILS_H
+#include "ft_cub3d.h"
 
-# include <fcntl.h>		//open
-# include <unistd.h>	//close write
-# include <stdlib.h>	//malloc free
-# include <stdio.h>		//printf
-# include <math.h>
+char	**square_matrix(t_map map)
+{
+	int		i;
+	char	*temp;
 
-# include "ft_ansi.h"
-# include "get_next_line.h"
-
-int		count_specific_char(char *str, char c);
-int		check_valid_file(char *file, char *extension);
-int		check_extension(char *argv, char *extension);
-
-#endif
+	i = 0;
+	while (i < map.lines)
+	{
+		temp = malloc(sizeof(char) * map.cols);
+		memset(temp, ' ', map.cols);
+		if (ft_strlen(map.grid[i]) < (size_t)map.cols)
+		{
+			temp = ft_memcpy(temp, map.grid[i], ft_strlen(map.grid[i]));
+			free(map.grid[i]);
+			map.grid[i] = ft_strdup(temp);
+		}
+		i++;
+		free(temp);
+	}
+	return (map.grid);
+}

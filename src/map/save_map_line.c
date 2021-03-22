@@ -6,13 +6,13 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:54:32 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 23:04:14 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 17:22:03 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-static size_t		get_length_with_tabs(char *line)
+static size_t	get_length_with_tabs(char *line)
 {
 	size_t	i;
 	size_t	j;
@@ -30,15 +30,13 @@ static size_t		get_length_with_tabs(char *line)
 	return (j);
 }
 
-static char	*ft_strdup_subst(const char *s, size_t len)
+static char	*ft_strdup_subst(const char *s, size_t len, size_t k)
 {
 	size_t	i;
-	size_t	k;
 	size_t	j;
 	char	*temp;
 
 	i = -1;
-	k = 0;
 	temp = malloc(sizeof(char) * (len + 1));
 	if (temp == NULL)
 		return (NULL);
@@ -60,78 +58,109 @@ static char	*ft_strdup_subst(const char *s, size_t len)
 	return (temp);
 }
 
+// void	check_line_valid(t_map *map, t_player *player, t_game *game)
+// {
+// 	int	line;
+// 	int	col;
+
+// 	line = map->lines;
+// 	col = 0;
+// 	while (col < map->cols)
+// 	{
+// 		if (map->grid[line][col] != '1' && map->grid[line][col] != ' ')
+// 		{
+// 			if (col == 0)
+// 			{
+// 				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
+// 				game->other_error = -2;
+// 			}
+// 			else if (col == map->cols - 1)
+// 			{
+// 				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
+// 				game->other_error = -2;
+// 			}
+// 			else if (map->grid[line][col - 1] == ' '
+// 				|| map->grid[line - 1][col - 1] == ' '
+// 				|| map->grid[line - 1][col] == ' '
+// 				|| map->grid[line - 1][col + 1] == ' '
+// 				|| map->grid[line][col + 1] == ' ')
+// 			{
+// 				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
+// 				game->other_error = -2;
+// 			}
+// 			else if (ft_strchr("NSWE", map->grid[line][col]) != NULL)
+// 			{
+// 				if (player->valid == 0)
+// 				{
+// 					printf(ANSI_B_BLUE "%c" ANSI_RESET, map->grid[line][col]);
+// 					player->direction = map->grid[line][col];
+// 					player->valid = 1;
+// 				}
+// 				else
+// 				{
+// 					printf(ANSI_B_RED "%c" ANSI_RESET, map->grid[line][col]);
+// 					player->valid = -2;
+// 				}
+// 			}
+// 			else
+// 				printf(ANSI_F_BBLUE "%c" ANSI_RESET, map->grid[line][col]);
+// 		}
+// 		else
+// 			printf(ANSI_F_BGREEN "%c" ANSI_RESET, map->grid[line][col]);
+// 		col++;
+// 	}
+// }
+
+static void	check_player(t_player *player, char direction)
+{
+	if (player->valid == 0)
+	{
+		player->direction = direction;
+		player->valid = 1;
+	}
+	else
+		player->valid = -2;
+}
+
 void	check_line_valid(t_map *map, t_player *player, t_game *game)
 {
-	size_t	line;
+	int	line;
 	int	col;
 
-	line = map->line;
+	line = map->lines;
 	col = 0;
-	while (col < (int)map->col)
+	while (col < map->cols)
 	{
 		if (map->grid[line][col] != '1' && map->grid[line][col] != ' ')
 		{
 			if (col == 0)
-			{
-				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
 				game->other_error = -2;
-			}
-			else if (col == (int)map->col - 1)
-			{
-				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
+			else if (col == map->cols - 1)
 				game->other_error = -2;
-			}
 			else if (map->grid[line][col - 1] == ' '
 				|| map->grid[line - 1][col - 1] == ' '
 				|| map->grid[line - 1][col] == ' '
 				|| map->grid[line - 1][col + 1] == ' '
 				|| map->grid[line][col + 1] == ' ')
-			{
-				printf(ANSI_B_BRED "%c" ANSI_RESET, map->grid[line][col]);
 				game->other_error = -2;
-			}
 			else if (ft_strchr("NSWE", map->grid[line][col]) != NULL)
-			{
-				if (player->valid == 0)
-				{
-					printf(ANSI_B_BLUE "%c" ANSI_RESET, map->grid[line][col]);
-					player->direction = map->grid[line][col];
-					player->valid = 1;
-				}
-				else
-				{
-					printf(ANSI_B_RED "%c" ANSI_RESET, map->grid[line][col]);
-					player->valid = -2;
-				}
-			}
-			else
-			{
-				printf(ANSI_F_BBLUE "%c" ANSI_RESET, map->grid[line][col]);
-			}
-		}
-		else
-		{
-			//printf(ANSI_F_GREEN "%c" ANSI_RESET, map->grid[line-1][col]);
-			printf(ANSI_F_BGREEN "%c" ANSI_RESET, map->grid[line][col]);
+				check_player(player, map->grid[line][col]);
 		}
 		col++;
 	}
 }
 
+//***** Atempt to remalloc lines ****
+//map->grid = ft_realloc(map->grid, sizeof(char *) * (map->line + 1));
+// if (map->grid == NULL)
+// 	return (0);
+
 void	save_map_line(char *line, t_map *map, t_game *game)
 {
-	if (get_length_with_tabs(line) > map->col)
-		map->col = get_length_with_tabs(line);
-	//map->grid = malloc(sizeof(char *) * 200);
-	//map->grid = ft_realloc(map->grid, sizeof(char *) * (map->line + 1));
-	// if (map->grid == NULL)
-	// 	return (0);
-	map->grid[map->line] = ft_strdup_subst(line, map->col);
+	if ((int)get_length_with_tabs(line) > map->cols)
+		map->cols = get_length_with_tabs(line);
+	map->grid[map->lines] = ft_strdup_subst(line, map->cols, 0);
 	check_line_valid(map, &game->player, game);
-	printf("length:%3ld - grid.line:%3d ", ft_strlen(map->grid[map->line]), map->line);
-	//printf(ANSI_B_BCYAN "[%s]" ANSI_RESET "\n", map->grid[map->line]);
-	printf("\n");
-	map->line++;
-	map->grid[map->line] = NULL;
-	//return (1);
+	map->lines++;
+	map->grid[map->lines] = NULL;
 }

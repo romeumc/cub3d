@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 00:26:24 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 16:14:41 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct s_resolution
 
 typedef struct s_map
 {
-	int		line;
-	size_t	col;
+	int		lines;
+	int		cols;
 	char	**grid;
 	int		valid;
 }	t_map;

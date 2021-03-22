@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:49:07 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/21 19:33:09 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 01:09:43 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,4 @@ void	open_map_file(char *filename, t_game *game)
 	if (result == EXIT_SUCCESS)
 		free(line);
 	close(fd);
-	check_map_errors(game);
 }

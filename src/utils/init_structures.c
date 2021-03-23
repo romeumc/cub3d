@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:36:43 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 09:48:24 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:30:57 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	init_resolution(t_resolution *resolution)
 
 static void	init_map(t_map *map)
 {
-	map->lines = 0;
+	map->rows = 0;
 	map->cols = 0;
 	map->valid = 0;
 	map->grid = malloc(sizeof(char *) * 200);

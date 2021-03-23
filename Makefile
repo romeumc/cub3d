@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/22 16:56:47 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/23 12:52:37 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,10 @@ SRC = cub3d.c \
 		map/sqare_matrix.c \
 		map/check_RGB.c \
 		game/game.c \
-		game/close_game.c
+		game/close_game.c \
+		game/hooks.c \
+		game/draw_world2d.c \
+		game/draw_shapes.c
 
 all: $(NAME)
 
@@ -136,5 +139,5 @@ runs: all
 	./cub3DS $(MAP)
 
 MAP = resources/maps/romeu.cub
-MAP = resources/maps/test5.cub
+#MAP = resources/maps/test5.cub
 #MAP = resources/maps/invalid_map_area_010.cub

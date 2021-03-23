@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 13:54:32 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 17:22:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:30:49 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*ft_strdup_subst(const char *s, size_t len, size_t k)
 // 	int	line;
 // 	int	col;
 
-// 	line = map->lines;
+// 	line = map->rows;
 // 	col = 0;
 // 	while (col < map->cols)
 // 	{
@@ -127,7 +127,7 @@ void	check_line_valid(t_map *map, t_player *player, t_game *game)
 	int	line;
 	int	col;
 
-	line = map->lines;
+	line = map->rows;
 	col = 0;
 	while (col < map->cols)
 	{
@@ -150,7 +150,7 @@ void	check_line_valid(t_map *map, t_player *player, t_game *game)
 	}
 }
 
-//***** Atempt to remalloc lines ****
+//***** Atempt to remalloc rows ****
 //map->grid = ft_realloc(map->grid, sizeof(char *) * (map->line + 1));
 // if (map->grid == NULL)
 // 	return (0);
@@ -159,8 +159,8 @@ void	save_map_line(char *line, t_map *map, t_game *game)
 {
 	if ((int)get_length_with_tabs(line) > map->cols)
 		map->cols = get_length_with_tabs(line);
-	map->grid[map->lines] = ft_strdup_subst(line, map->cols, 0);
+	map->grid[map->rows] = ft_strdup_subst(line, map->cols, 0);
 	check_line_valid(map, &game->player, game);
-	map->lines++;
-	map->grid[map->lines] = NULL;
+	map->rows++;
+	map->grid[map->rows] = NULL;
 }

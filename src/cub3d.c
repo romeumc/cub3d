@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 17:28:12 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/23 12:30:53 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_array1(t_game *game)
 	int	j;
 
 	i = 0;
-	while (i < (int)game->map.lines)
+	while (i < (int)game->map.rows)
 	{
 		j = 0;
 		while (j < (int)game->map.cols)

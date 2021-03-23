@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:48:48 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 17:18:53 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/23 11:27:14 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	free_game(t_game *game)
 
 int	close_game(t_game *game)
 {
+	
 	mlx_destroy_window(game->mlx, game->win);
 	free_game(game);
 	exit(0);

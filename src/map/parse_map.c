@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:58:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 16:53:01 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/22 17:34:39 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int	parse_map2(char *line, t_game *game)
 		game->map.valid = 1;
 		save_map_line(line, &game->map, game);
 	}
-	else if (validate_map_line(line, "\t 0123SNWE") == 1 && game->map.valid <= -5)
+	else if (validate_map_line(line, "\t 0123SNWE") == 1
+		&& game->map.valid <= -5)
 	{
 		game->map.valid = -6;
 		save_map_line(line, &game->map, game);

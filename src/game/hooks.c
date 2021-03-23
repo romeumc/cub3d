@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sqare_matrix.c                                     :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/22 09:43:09 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/23 12:30:43 by rmartins         ###   ########.fr       */
+/*   Created: 2021/03/22 17:44:49 by rmartins          #+#    #+#             */
+/*   Updated: 2021/03/22 17:45:12 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-char	**square_matrix(t_map map)
+int	key_hook(int keycode, t_game *game)
 {
-	int		i;
-	char	*temp;
+	printf("Hello from key_hook: %d\n", keycode);
+	if (keycode == KEY_ESC)
+		close_game(game);
+	return (1);
+}
 
-	i = 0;
-	while (i < map.rows)
-	{
-		temp = malloc(sizeof(char) * map.cols);
-		memset(temp, ' ', map.cols);
-		if (ft_strlen(map.grid[i]) < (size_t)map.cols)
-		{
-			temp = ft_memcpy(temp, map.grid[i], ft_strlen(map.grid[i]));
-			free(map.grid[i]);
-			map.grid[i] = ft_strdup(temp);
-		}
-		i++;
-		free(temp);
-	}
-	return (map.grid);
+int	mouse_hook(int button, int x, int y, t_game *game)
+{
+	printf("button:%d x:%d y:%d\n", button, x, y);
+	printf("%p", game->mlx);
+	return (1);
 }

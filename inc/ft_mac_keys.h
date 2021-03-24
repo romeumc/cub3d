@@ -6,20 +6,31 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:08:11 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/19 20:20:16 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:37:59 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MAC_KEYS_H
 # define FT_MAC_KEYS_H
 
-# define KEY_EXIT		17 //Exit program key Linux
-# define KEY_ESC		65307
-# define KEY_A			97
-# define KEY_S			115
-# define KEY_D			100
-# define KEY_W			119
-# define ARROW_RIGHT	65363
-# define ARROW_LEFT		65361
+/*
+** Keys
+*/
+
+# define KEY_ESC		53
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D			2
+# define KEY_W			13
+# define LEFT_ARROW		123
+# define RIGHT_ARROW	124
+
+/*
+** Events
+*/
+
+# define KEY_EXIT		17
+# define KEY_PRESS		02
+# define KEY_RELEASE	03
 
 #endif

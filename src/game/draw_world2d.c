@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:48:59 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/23 13:14:44 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/23 20:15:35 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	draw_world2d(t_game *game)
 	int		i;
 	int		j;
 	int		color;
-	t_shape	player;
 	
 	color = 0x22FFFF;
 	i = 0;
@@ -54,14 +53,12 @@ void	draw_world2d(t_game *game)
 			if (game->map.grid[i][j] == '1')
 				draw_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, color);
 			else if (game->map.grid[i][j] == '2')
-				draw_small_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, 0xFF22FF);
-			else if (ft_strchr("NSWE", game->map.grid[i][j]))
 			{
-				player.color = 0xFF2222;
-				player.pos_x = game->map.tile_size * j;
-				player.pos_y = game->map.tile_size * i;
-				draw_circle(game, &game->img, &player);
+				draw_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, 0xFFFFFF);
+				draw_small_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, 0xFF22FF);
 			}
+			else if (game->map.grid[i][j] != ' ')
+				draw_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, 0xFFFFFF);
 			j++;
 		}
 		i++;

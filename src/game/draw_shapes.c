@@ -6,27 +6,27 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:50:01 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/23 13:11:27 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/24 14:15:16 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-double	deg_to_rad(double deg)
-{
-	return (deg * M_PI / 180.0);
-}
 
-void	draw_circle(t_game *game, t_img *img, t_shape *shape)
+
+void	draw_circle(t_game *game, t_img *img, t_player *shape, int center)
 {
 	double	angle;
 	double	x1;
 	double	y1;
 	int		radius;
 
-	shape->pos_x += (game->map.tile_size / 2);
-	shape->pos_y += (game->map.tile_size / 2);
-	radius = game->map.tile_size / 6;
+	if (center == 1)
+	{
+		shape->pos_x += (game->map.tile_size / 2);
+		shape->pos_y += (game->map.tile_size / 2);
+	}
+	radius = game->map.tile_size / PLAYER_SIZE;
 	while (radius > 0)
 	{
 		angle = 0;
@@ -34,7 +34,7 @@ void	draw_circle(t_game *game, t_img *img, t_shape *shape)
 		{
 			x1 = sin(deg_to_rad(angle)) * radius + shape->pos_x;
 			y1 = cos(deg_to_rad(angle)) * radius + shape->pos_y;
-			my_mlx_pixelput(img, x1, y1, shape->color);
+			my_mlx_pixelput(img, x1, y1, create_trgb(shape->color));
 			angle++;
 		}
 		radius--;
@@ -48,7 +48,6 @@ void	draw_small_rectangle(t_game *game, int x, int y, int color)
 
 	x += (game->map.tile_size / 4);
 	y += (game->map.tile_size / 4);
-
 	i = 0;
 	while (i < game->map.tile_size / 2)
 	{
@@ -89,7 +88,10 @@ void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
 
 	deltaX = x2 - x1;
 	deltaY = y2 - y1;
-	step = (fabs(deltaX) > fabs(deltaY)) ? fabs(deltaX) : fabs(deltaY);
+	if (fabs(deltaX) > fabs(deltaY))
+		step = fabs(deltaX);
+	else
+		step = fabs(deltaY);
 	deltaX /= step;
 	deltaY /= step;
 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)

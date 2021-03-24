@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/23 13:10:30 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/24 12:05:35 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_img
 
 typedef struct s_color
 {
+	int	transparency;
 	int	red;
 	int	green;
 	int	blue;
@@ -58,6 +59,12 @@ typedef struct s_player
 {
 	char	direction;
 	int		valid;
+	double	pos_x;
+	double	pos_y;
+	t_color	color;
+	double	delta_x;
+	double	delta_y;
+	double	angle;
 }	t_player;
 
 typedef struct s_game
@@ -77,13 +84,5 @@ typedef struct s_game
 	t_color			floor;
 	t_color			ceilling;
 }	t_game;
-
-typedef struct s_shape
-{
-	int		pos_x;
-	int		pos_y;
-	int		color;
-}	t_shape;
-
 
 #endif

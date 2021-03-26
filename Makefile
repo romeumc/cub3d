@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/23 23:20:00 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/26 22:52:29 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,10 @@ SRC = cub3d.c \
 		game/draw_world2d.c \
 		game/draw_shapes.c \
 		game/utils.c \
+		game/utils2.c \
+		game/draw_player.c \
+		game/ray_vertical_interception.c \
+		game/ray_horizontal_interception.c \
 		game/check_wall_collision.c
 
 all: $(NAME)

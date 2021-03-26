@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/24 12:05:35 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/26 18:38:01 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_player
 	t_color	color;
 	double	delta_x;
 	double	delta_y;
-	double	angle;
+	int	angle;
 }	t_player;
 
 typedef struct s_game

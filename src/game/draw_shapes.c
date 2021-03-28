@@ -6,13 +6,11 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:50:01 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/24 14:15:16 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/27 19:46:12 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
-
-
 
 void	draw_circle(t_game *game, t_img *img, t_player *shape, int center)
 {
@@ -41,7 +39,7 @@ void	draw_circle(t_game *game, t_img *img, t_player *shape, int center)
 	}
 }
 
-void	draw_small_rectangle(t_game *game, int x, int y, int color)
+void	draw_s_rectangle(t_game *game, int x, int y, int color)
 {
 	int	i;
 	int	j;
@@ -78,6 +76,34 @@ void	draw_rectangle(t_game *game, int x, int y, int color)
 		i++;
 	}
 }
+
+// void	draw_line2(t_player *player, t_img *img, double end_x, double end_y)
+// {
+// 	double	delta_x;
+// 	double	delta_y;
+// 	int		pixels;
+// 	double	pixel_x;
+// 	double	pixel_y;
+
+// 	end_x = end_x < 0 ? 0: end_x;
+// 	end_x = end_x > (1500) ? 1500 : end_x;
+// 	end_y = end_y < 0 ? 0: end_y;
+// 	end_y = end_y > (1000) ? 1000 : end_y;
+// 	delta_x = end_x - player->pos_x;
+// 	delta_y = end_y - player->pos_y;
+// 	pixels = sqrt(pow(delta_x, 2) + pow(delta_y, 2));
+// 	delta_x /= pixels;
+// 	delta_y /= pixels;
+// 	pixel_x = player->pos_x;
+// 	pixel_y = player->pos_y;
+// 	while (pixels)
+// 	{
+// 		my_mlx_pixelput(img, pixel_x, pixel_y, 0x0000FF);
+// 		pixel_x += delta_x;
+// 		pixel_y += delta_y;
+// 		pixels--;
+// 	}
+// }
 
 // //Draw the line by DDA algorithm
 void	draw_line(t_game *game, double x1, double y1, double x2, double y2)

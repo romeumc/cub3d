@@ -6,48 +6,67 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:44:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/26 21:49:24 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/28 23:39:26 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	side_walk(t_player *player, int angle)
+static void	side_walk(t_game *game, t_player *player, int angle)
 {
-	player->delta_x = cos(deg_to_rad(player->angle + angle));
-	player->delta_y = sin(deg_to_rad(player->angle + angle));
-	player->pos_x += player->delta_x * PLAYER_STEP;
-	player->pos_y += player->delta_y * PLAYER_STEP;
+	angle = fix_ang(player->angle + angle);
+	if (cast_ray(game, angle) > DISTANCE_TO_WALL)
+	{
+		player->delta_x = cos(deg_to_rad(angle));
+		player->delta_y = sin(deg_to_rad(angle));
+		player->pos_x += player->delta_x * PLAYER_STEP;
+		player->pos_y += player->delta_y * PLAYER_STEP;
+	}
+}
+
+static void walk(t_game *game, t_player *player, char keycode)
+{
+	int angle;
+
+	if (keycode == 'W')
+	{
+		angle = fix_ang(player->angle);
+		if (cast_ray(game, angle) > DISTANCE_TO_WALL)
+		{
+			player->pos_x += player->delta_x * PLAYER_STEP;
+			player->pos_y += player->delta_y * PLAYER_STEP;
+		}
+	}
+	else if (keycode == 'S')
+	{
+		angle = fix_ang(player->angle - 180);
+		if (cast_ray(game, angle) > DISTANCE_TO_WALL)
+		{
+			player->pos_x -= player->delta_x * PLAYER_STEP;
+			player->pos_y -= player->delta_y * PLAYER_STEP;
+		}
+	}
 }
 
 int	key_hook(int keycode, t_game *game)
 {
-	printf("Hello from key_hook:%3d ", keycode);
-	printf("x:%4f y%4f ", game->player.pos_x, game->player.pos_y);
-	printf("tile:%d [%2d][%2d] ", game->map.tile_size, (int)(game->player.pos_x / game->map.tile_size), (int)(game->player.pos_y / game->map.tile_size));
 	if (keycode == KEY_ESC)
 		close_game(game);
 	else if (keycode == KEY_A)
 	{
-		side_walk(&game->player, -90);
-		//check_wall(game, 'W');
+		side_walk(game, &game->player, -90);
 	}
 	else if (keycode == KEY_D)
 	{
-		side_walk(&game->player, 90);
-		//check_wall(game, 'E');
+		side_walk(game, &game->player, 90);
 	}
 	else if (keycode == KEY_W)
 	{
-		game->player.pos_x += game->player.delta_x * PLAYER_STEP;
-		game->player.pos_y += game->player.delta_y * PLAYER_STEP;
-		//check_wall(game, 'N');
+		walk(game, &game->player, 'W');
 	}
 	else if (keycode == KEY_S)
 	{
-		game->player.pos_x -= game->player.delta_x * PLAYER_STEP;
-		game->player.pos_y -= game->player.delta_y * PLAYER_STEP;
-		//check_wall(game, 'S');
+		walk(game, &game->player, 'S');
 	}
 	else if (keycode == RIGHT_ARROW)
 		rotate_player(&game->player, ROTATION_STEP * 1);

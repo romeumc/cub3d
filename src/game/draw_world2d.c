@@ -6,43 +6,43 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:48:59 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/23 20:15:35 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/27 19:51:03 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void 	draw_lines(t_game *game, int cols, int rows)
+void 	draw_lines(t_game *game, int cols, int rows, int tile_size)
 {
 	int		i;
 	int		j;
 	int		height;
 	int		width;
 
-	height = rows * game->map.tile_size;
-	width = cols * game->map.tile_size;
+	height = rows * tile_size;
+	width = cols * tile_size;
 	i = 0;
 	while (i < cols)
 	{
-		draw_line(game, i * game->map.tile_size, 0, i * game->map.tile_size, height);
+		draw_line(game, i * tile_size, 0, i * tile_size, height);
 		i++;
 	}
-	draw_line(game, cols * game->map.tile_size - 1, 0, cols * game->map.tile_size - 1, height);
+	draw_line(game, cols * tile_size - 1, 0, cols * tile_size - 1, height);
 	j = 0;
 	while (j < rows)
 	{
-		draw_line(game, 0, j * game->map.tile_size, width, j * game->map.tile_size);
+		draw_line(game, 0, j * tile_size, width, j * tile_size);
 		j++;
 	}
-	draw_line(game, 0, rows * game->map.tile_size - 1, width, rows * game->map.tile_size - 1);
+	draw_line(game, 0, rows * tile_size - 1, width, rows * tile_size - 1);
 }
 
-void	draw_world2d(t_game *game)
+void	draw_world2d(t_game *game, int tile_size)
 {
 	int		i;
 	int		j;
 	int		color;
-	
+
 	color = 0x22FFFF;
 	i = 0;
 	while (i < game->map.rows)
@@ -51,17 +51,17 @@ void	draw_world2d(t_game *game)
 		while (j < game->map.cols)
 		{
 			if (game->map.grid[i][j] == '1')
-				draw_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, color);
+				draw_rectangle(game, tile_size * j, tile_size * i, color);
 			else if (game->map.grid[i][j] == '2')
 			{
-				draw_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, 0xFFFFFF);
-				draw_small_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, 0xFF22FF);
+				draw_rectangle(game, tile_size * j, tile_size * i, 0xFFFFFF);
+				draw_s_rectangle(game, tile_size * j, tile_size * i, 0xFF22FF);
 			}
 			else if (game->map.grid[i][j] != ' ')
-				draw_rectangle(game, game->map.tile_size * j, game->map.tile_size * i, 0xFFFFFF);
+				draw_rectangle(game, tile_size * j, tile_size * i, 0xFFFFFF);
 			j++;
 		}
 		i++;
 	}
-	draw_lines(game, game->map.cols, game->map.rows);
+	draw_lines(game, game->map.cols, game->map.rows, tile_size);
 }

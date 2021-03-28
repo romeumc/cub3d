@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/26 22:52:29 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/28 23:36:05 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRC = cub3d.c \
 		map/print_map_errors.c \
 		map/sqare_matrix.c \
 		map/check_RGB.c \
+		map/check_map_closed.c \
 		game/game.c \
 		game/close_game.c \
 		game/hooks.c \
@@ -60,8 +61,7 @@ SRC = cub3d.c \
 		game/utils2.c \
 		game/draw_player.c \
 		game/ray_vertical_interception.c \
-		game/ray_horizontal_interception.c \
-		game/check_wall_collision.c
+		game/ray_horizontal_interception.c
 
 all: $(NAME)
 
@@ -147,3 +147,4 @@ runs: all
 MAP = resources/maps/romeu.cub
 #MAP = resources/maps/test5.cub
 #MAP = resources/maps/invalid_map_area_010.cub
+MAP = resources/maps/invalid_MAP11.cub

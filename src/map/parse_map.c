@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:58:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 17:34:39 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/29 17:29:48 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ static void	get_texture(char *line, t_texture *texture, t_game *game)
 		texture->valid = -3;
 }
 
-static void	get_color(char *line, t_color *color, t_game *game)
+static void	get_color(char *line, t_pane *pane, t_game *game)
 {
 	char	**temp;
 	char	**rgb_color;
 
 	if (game->map.valid == 0)
 	{
-		if (color->valid == 0)
+		if (pane->valid == 0)
 		{
 			temp = ft_split(line, ' ');
 			if (ft_split_count(temp) == 2
@@ -79,18 +79,18 @@ static void	get_color(char *line, t_color *color, t_game *game)
 			{
 				rgb_color = ft_split(temp[1], ',');
 				if (ft_split_count(rgb_color) == 3)
-					color->valid = check_and_save_rgb(color, rgb_color);
+					pane->valid = check_and_save_rgb(&pane->color, rgb_color);
 				ft_free_array_array(rgb_color);
 			}
 			else
-				color->valid = -1;
+				pane->valid = -1;
 			ft_free_array_array(temp);
 		}
 		else
-			color->valid = -2;
+			pane->valid = -2;
 	}
 	else
-		color->valid = -3;
+		pane->valid = -3;
 }
 
 int	parse_map2(char *line, t_game *game)

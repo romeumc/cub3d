@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:48:59 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/27 19:51:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 01:56:44 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ void	draw_world2d(t_game *game, int tile_size)
 {
 	int		i;
 	int		j;
-	int		color;
 
-	color = 0x22FFFF;
 	i = 0;
 	while (i < game->map.rows)
 	{
@@ -51,7 +49,7 @@ void	draw_world2d(t_game *game, int tile_size)
 		while (j < game->map.cols)
 		{
 			if (game->map.grid[i][j] == '1')
-				draw_rectangle(game, tile_size * j, tile_size * i, color);
+				draw_rectangle(game, tile_size * j, tile_size * i, 0x22FFFF);
 			else if (game->map.grid[i][j] == '2')
 			{
 				draw_rectangle(game, tile_size * j, tile_size * i, 0xFFFFFF);
@@ -63,5 +61,5 @@ void	draw_world2d(t_game *game, int tile_size)
 		}
 		i++;
 	}
-	draw_lines(game, game->map.cols, game->map.rows, tile_size);
+	//draw_lines(game, game->map.cols, game->map.rows, tile_size);
 }

@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/28 23:36:05 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/29 18:33:31 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,9 @@ SRC = cub3d.c \
 		game/utils2.c \
 		game/draw_player.c \
 		game/ray_vertical_interception.c \
-		game/ray_horizontal_interception.c
+		game/ray_horizontal_interception.c \
+		game/draw_pane.c \
+		game/draw_wall.c
 
 all: $(NAME)
 
@@ -136,8 +138,8 @@ run: all
 
 runv: all
 	@echo $(ANSI_B_RED) "Valgrind RESULT" $(ANSI_RESET)
-	# valgrind -q --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) $(MAP)
-	valgrind ./$(NAME) $(MAP)
+	#valgrind -q --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME) $(MAP)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) $(MAP)
 
 runs: all
 	@echo $(ANSI_B_RED) "Running with sanitize" $(ANSI_RESET)
@@ -147,4 +149,4 @@ runs: all
 MAP = resources/maps/romeu.cub
 #MAP = resources/maps/test5.cub
 #MAP = resources/maps/invalid_map_area_010.cub
-MAP = resources/maps/invalid_MAP11.cub
+#MAP = resources/maps/invalid_MAP11.cub

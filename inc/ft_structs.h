@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/26 23:15:25 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 01:37:14 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,6 @@ typedef struct s_img
 	int		line_lenght;
 	int		endian;
 }	t_img;
-
-typedef struct s_color
-{
-	int	transparency;
-	int	red;
-	int	green;
-	int	blue;
-	int	valid;
-}	t_color;
 
 typedef struct s_texture
 {
@@ -55,6 +46,14 @@ typedef struct s_map
 	int		tile_size;
 }	t_map;
 
+typedef struct s_color
+{
+	int	transparency;
+	int	red;
+	int	green;
+	int	blue;
+}	t_color;
+
 typedef struct s_player
 {
 	char	direction;
@@ -67,11 +66,22 @@ typedef struct s_player
 	int		angle;
 }	t_player;
 
+typedef struct s_pane
+{
+	int		pos_x;
+	int		pos_y;
+	int		height;
+	int		width;
+	t_color	color;
+	int		valid;
+}	t_pane;
+
 typedef struct s_game
 {
 	void			*mlx;
 	void			*win;
 	t_img			img;
+	t_img			img1;
 	int				other_error;
 	t_player		player;
 	t_map			map;
@@ -80,9 +90,18 @@ typedef struct s_game
 	t_texture		t_so;
 	t_texture		t_ea;
 	t_texture		t_we;
-	t_texture		t_sprite;	
-	t_color			floor;
-	t_color			ceilling;
+	t_texture		t_sprite;
+	t_pane			floor;
+	t_pane			ceilling;
 }	t_game;
+
+typedef struct s_ray
+{
+	int		pos_x;
+	int		pos_y;
+	int		height;
+	char	intersection;
+	double	distance;
+}	t_ray;
 
 #endif

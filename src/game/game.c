@@ -6,17 +6,21 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:03:29 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/27 19:55:12 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 01:47:59 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	init_game(t_game *game)
+static void	init_window(t_game *game)
 {
 	game->mlx = mlx_init();
 	game->win = mlx_new_window(game->mlx, game->resolution.x,
 			game->resolution.y, "Cub3D!");
+}
+
+static void	init_image(t_game *game)
+{
 	game->img.img = mlx_new_image(game->mlx,
 			game->resolution.x, game->resolution.y);
 	game->img.addr = mlx_get_data_addr(game->img.img,
@@ -24,42 +28,46 @@ void	init_game(t_game *game)
 			&game->img.line_lenght, &game->img.endian);
 }
 
-void	display_image_texture(t_game *game)
-{
-	int		i;
-	t_img	img1;
+// void	display_image_texture(t_game *game)
+// {
+// 	int		i;
+// 	t_img	img1;
 
-	img1.addr = mlx_xpm_file_to_image(game->mlx, game->t_no.path,
-			&game->t_no.width, &game->t_no.height);
-	i = 0;
-	while (i < 1200)
-	{
-		mlx_put_image_to_window(game->mlx, game->win, img1.addr, i, 0);
-		i += game->t_no.height;
-	}
-	mlx_destroy_image(game->mlx, img1.addr);
-}
+// 	img1.addr = mlx_xpm_file_to_image(game->mlx, game->t_no.path,
+// 			&game->t_no.width, &game->t_no.height);
+// 	i = 0;
+// 	while (i < 1200)
+// 	{
+// 		mlx_put_image_to_window(game->mlx, game->win, img1.addr, i, 0);
+// 		i += game->t_no.height;
+// 	}
+// 	mlx_destroy_image(game->mlx, img1.addr);
+// }
 
 int	main_loop(t_game *game)
 {
 	/* testes */
-	// mlx_string_put(game->mlx, game->win, 100, 500, 0xFF0000, game->t_no.path);
+	//mlx_string_put(game->mlx, game->win, 100, 500, 0xFF0000, game->t_no.path);
 	// draw_line_test(game);
 	//display_player(game);
 	//display_image_texture(game);
+	init_image(game);
+	draw_ceilling(game, game->img, game->ceilling);
+	draw_floor(game, game->img, game->floor);
+	draw_wall(game);
 	draw_world2d(game, game->map.tile_size);
 	draw_player2d(game);
 	draw_rays2d(game);
-
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+	mlx_destroy_image(game->mlx, game->img.img);
 	return (0);
 }
 
 void	rungame(t_game *game)
 {
-	set_tile_size(game, 100);
+	set_tile_size(game, MINI_MAP_PERCENT);
 	printf("TILE_SIZE: %d\n", game->map.tile_size);
-	init_game(game);
+	init_window(game);
 	// mlx_get_screen_size(game->mlx, &sizex, &sizey);
 	// printf("Resolution - x:%d y:%d\n", sizex, sizey);
 	// printf("EXIT CODE:%d\n", KEY_EXIT);

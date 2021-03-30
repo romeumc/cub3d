@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:38:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 17:22:26 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/29 17:31:38 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	debug___________________________game(t_game *game, int flag)
 		printf("texture_we:[%s]\n", game->t_we.path);
 		printf("texture_ea:[%s]\n", game->t_ea.path);
 		printf("texture_sprite:[%s]\n", game->t_sprite.path);
-		printf("floor:[%d][%d][%d]\n",
-			game->floor.red, game->floor.green, game->floor.blue);
-		printf("ceilling:[%d][%d][%d]\n",
-			game->ceilling.red, game->ceilling.green, game->ceilling.blue);
+		printf("floor:[%d][%d][%d]\n", game->floor.color.red,
+			game->floor.color.green, game->floor.color.blue);
+		printf("ceilling:[%d][%d][%d]\n", game->ceilling.color.red,
+			game->ceilling.color.green, game->ceilling.color.blue);
 		printf("valid map resolution: %d\n", game->resolution.valid);
 		printf("valid map texture_no: %d\n", game->t_no.valid);
 		printf("valid map texture_so: %d\n", game->t_so.valid);

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:36:43 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/23 12:30:57 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/29 17:27:50 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static void	init_texture(t_texture *texture)
 	texture->valid = 0;
 }
 
-static void	init_color(t_color *color)
+static void	init_pane(t_pane *pane)
 {
-	color->valid = 0;
+	pane->valid = 0;
 }
 
 static void	init_resolution(t_resolution *resolution)
@@ -49,8 +49,8 @@ void	init_structures(t_game *game)
 	init_texture(&game->t_we);
 	init_texture(&game->t_ea);
 	init_texture(&game->t_sprite);
-	init_color(&game->floor);
-	init_color(&game->ceilling);
+	init_pane(&game->floor);
+	init_pane(&game->ceilling);
 	init_map(&game->map);
 	game->other_error = 0;
 }

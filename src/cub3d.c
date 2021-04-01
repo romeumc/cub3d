@@ -6,13 +6,13 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/23 12:30:53 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 21:49:50 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	print_array1(t_game *game)
+void	print_map_ascii(t_game *game)
 {
 	int	i;
 	int	j;
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	init_structures(&game);
 	open_map_file(argv[1], &game);
 	check_map_errors(&game);
-	print_array1(&game);
+	print_map_ascii(&game);
 	rungame(&game);
 	return (0);
 }

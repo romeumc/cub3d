@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:49:40 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 01:47:40 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:24:37 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define SCALE				5
 # define ROTATION_STEP		1
 # define FIELD_OF_VIEW		60
-# define DISTANCE_TO_WALL	5
+# define DISTANCE_TO_WALL	8
 # define MINI_MAP_PERCENT	30
 
 int		close_game(t_game *game);
@@ -51,9 +51,12 @@ double	get_ray_distance_h(t_game *game, t_player *player, double angle);
 int		is_wall(t_map *map, int screen_x, int screen_y);
 double	cast_ray(t_game *game, double ray_angle, t_ray *ray);
 
-void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
+//void	draw_line(t_game *game, double x1, double y1, double x2, double y2);
 void	draw_ceilling(t_game *game, t_img img, t_pane ceilling);
 void	draw_floor(t_game *game, t_img img, t_pane floor);
 void	draw_wall(t_game *game);
+void	free_textures(t_game *game);
+
+void	free_tex(t_game *game, t_texture *tex);
 
 #endif

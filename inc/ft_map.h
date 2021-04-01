@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:04:09 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/27 22:50:26 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 21:43:08 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	save_map_line(char *line, t_map *map, t_game *game);
 char	**square_matrix(t_map map);
 void	print_map_errors(t_game *game);
 void	check_line_valid(t_map *map, t_player *player, t_game *game);
+void	load_textures(t_game *game);
 
 #endif

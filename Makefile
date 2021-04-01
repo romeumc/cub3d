@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/03/29 18:33:31 by rmartins         ###   ########.fr        #
+#    Updated: 2021/03/30 20:27:33 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC = cub3d.c \
 		utils/count_specific_char.c \
 		utils/validate_args.c \
 		utils/init_structures.c \
+		utils/load_textures.c \
 		map/open_map_file.c \
 		map/parse_map.c \
 		map/validate_map_line.c \

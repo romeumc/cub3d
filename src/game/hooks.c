@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:44:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 01:43:57 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:23:16 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	side_walk(t_game *game, t_player *player, int angle)
 {
 	t_ray	ray;
+
 	angle = fix_ang(player->angle + angle);
 	if (cast_ray(game, angle, &ray) > DISTANCE_TO_WALL)
 	{

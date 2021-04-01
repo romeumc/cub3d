@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:50:01 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/27 19:46:12 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:24:23 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,24 +106,24 @@ void	draw_rectangle(t_game *game, int x, int y, int color)
 // }
 
 // //Draw the line by DDA algorithm
-void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
-{
-	double	deltaX;
-	double	deltaY;
-	double	step;
+// void	draw_line(t_game *game, double x1, double y1, double x2, double y2)
+// {
+// 	double	deltaX;
+// 	double	deltaY;
+// 	double	step;
 
-	deltaX = x2 - x1;
-	deltaY = y2 - y1;
-	if (fabs(deltaX) > fabs(deltaY))
-		step = fabs(deltaX);
-	else
-		step = fabs(deltaY);
-	deltaX /= step;
-	deltaY /= step;
-	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
-	{
-		my_mlx_pixelput(&game->img, x1, y1, 0xb3b3b3);
-		x1 += deltaX;
-		y1 += deltaY;
-	}
-}
+// 	deltaX = x2 - x1;
+// 	deltaY = y2 - y1;
+// 	if (fabs(deltaX) > fabs(deltaY))
+// 		step = fabs(deltaX);
+// 	else
+// 		step = fabs(deltaY);
+// 	deltaX /= step;
+// 	deltaY /= step;
+// 	while (fabs(x2 - x1) > 0.01 || fabs(y2 - y1) > 0.01)
+// 	{
+// 		my_mlx_pixelput(&game->img, x1, y1, 0xb3b3b3);
+// 		x1 += deltaX;
+// 		y1 += deltaY;
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:55:42 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 17:41:45 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 20:27:07 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ void	validate_args(int argc, char **argv);
 void	open_map_file(char *filename, t_game *game);
 void	rungame(t_game *game);
 void	print_array(t_game *game);
-void	print_array1(t_game *game);
+void	print_map_ascii(t_game *game);
 
 #endif

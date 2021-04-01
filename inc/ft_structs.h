@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 01:37:14 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:19:21 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_texture
 	int		valid;
 	int		width;
 	int		height;
+	t_img	timg;
 }	t_texture;
 
 typedef struct s_resolution
@@ -81,7 +82,6 @@ typedef struct s_game
 	void			*mlx;
 	void			*win;
 	t_img			img;
-	t_img			img1;
 	int				other_error;
 	t_player		player;
 	t_map			map;
@@ -97,11 +97,17 @@ typedef struct s_game
 
 typedef struct s_ray
 {
-	int		pos_x;
-	int		pos_y;
-	int		height;
-	char	intersection;
-	double	distance;
+	int			pos_x;
+	int			pos_y;
+	int			height;
+	char		intersection;
+	double		distance;
+	int			x_tex;
+	int			y_tex;
+	double		tex_step;
+	double		tex_offset;
+	double		angle;
+	t_texture	tex;
 }	t_ray;
 
 #endif

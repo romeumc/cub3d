@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:03:29 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 01:47:59 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/01 20:22:12 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,29 +28,47 @@ static void	init_image(t_game *game)
 			&game->img.line_lenght, &game->img.endian);
 }
 
-// void	display_image_texture(t_game *game)
+// void	display_image_texture(t_game *game, t_texture *tex)
 // {
 // 	int		i;
-// 	t_img	img1;
 
-// 	img1.addr = mlx_xpm_file_to_image(game->mlx, game->t_no.path,
-// 			&game->t_no.width, &game->t_no.height);
+// 	tex->timg.img = mlx_xpm_file_to_image(game->mlx, tex->path,
+// 			&tex->width, &tex->height);
+// 	tex->timg.addr = mlx_get_data_addr(tex->timg.img,
+// 			&tex->timg.bits_per_pixel,
+// 			&tex->timg.line_lenght, &tex->timg.endian);
 // 	i = 0;
 // 	while (i < 1200)
 // 	{
-// 		mlx_put_image_to_window(game->mlx, game->win, img1.addr, i, 0);
-// 		i += game->t_no.height;
+// 		mlx_put_image_to_window(game->mlx, game->win, tex->timg.img, i, 0);
+// 		i += tex->width;
 // 	}
-// 	mlx_destroy_image(game->mlx, img1.addr);
+// 	mlx_destroy_image(game->mlx, tex->timg.img);
+// }
+
+// void	display_image_texture(t_game *game, t_texture *tex)
+// {
+// 	int		i;
+
+// 	tex->timg.img = mlx_xpm_file_to_image(game->mlx, tex->path,
+// 			&tex->width, &tex->height);
+// 	tex->timg.addr = mlx_get_data_addr(tex->timg.img,
+// 			&tex->timg.bits_per_pixel,
+// 			&tex->timg.line_lenght, &tex->timg.endian);
+// 	i = 0;
+// 	while (i < 1200)
+// 	{
+// 		mlx_put_image_to_window(game->mlx, game->win, tex->timg.img, i, 0);
+// 		i += tex->width;
+// 	}
+// 	mlx_destroy_image(game->mlx, tex->timg.img);
 // }
 
 int	main_loop(t_game *game)
 {
 	/* testes */
 	//mlx_string_put(game->mlx, game->win, 100, 500, 0xFF0000, game->t_no.path);
-	// draw_line_test(game);
-	//display_player(game);
-	//display_image_texture(game);
+	//display_image_texture(game, &game->t_so);
 	init_image(game);
 	draw_ceilling(game, game->img, game->ceilling);
 	draw_floor(game, game->img, game->floor);
@@ -68,6 +86,8 @@ void	rungame(t_game *game)
 	set_tile_size(game, MINI_MAP_PERCENT);
 	printf("TILE_SIZE: %d\n", game->map.tile_size);
 	init_window(game);
+	load_textures(game);
+	//free_textures(game);
 	// mlx_get_screen_size(game->mlx, &sizex, &sizey);
 	// printf("Resolution - x:%d y:%d\n", sizex, sizey);
 	// printf("EXIT CODE:%d\n", KEY_EXIT);
@@ -76,5 +96,5 @@ void	rungame(t_game *game)
 	mlx_hook(game->win, KEY_EXIT, 0, &close_game, game);
 	mlx_loop_hook(game->mlx, &main_loop, game);
 	mlx_loop(game->mlx);
-	//mlx_destroy_image(game->mlx, game->img.addr);
+	//mlx_destroy_image(game->mlx, game->img.img);
 }

@@ -6,17 +6,17 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 22:00:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/24 14:15:22 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 23:13:43 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	my_mlx_pixelput(t_img *data, int x, int y, int color)
+void	my_mlx_pixelput(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_lenght + x * (data->bits_per_pixel / 8));
+	dst = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 

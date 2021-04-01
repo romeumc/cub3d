@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:48:48 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/29 18:27:13 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/03/30 22:51:09 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	free_game(t_game *game)
 int	close_game(t_game *game)
 {
 	//mlx_destroy_image(game->mlx, game->img.img);
+	//free_textures(game);
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
 	free_game(game);

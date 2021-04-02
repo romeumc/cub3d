@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:35:46 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 01:52:16 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/02 22:45:03 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ double	cast_ray(t_game *game, double ray_angle, t_ray *ray)
 	double	v_distance;
 	double	h_distance;
 
-	v_distance = get_ray_distance_v(game, &game->player, ray_angle);
-	h_distance = get_ray_distance_h(game, &game->player, ray_angle);
+	ray->angle = ray_angle;
+	v_distance = get_ray_distance_v(game, &game->player, ray);
+	h_distance = get_ray_distance_h(game, &game->player, ray);
 	if (v_distance > h_distance)
 	{
 		ray->intersection = 'H';

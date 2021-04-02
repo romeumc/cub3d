@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/01 20:19:21 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/02 20:05:06 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_game
 
 typedef struct s_ray
 {
+	int			grid_hit_v;
+	int			grid_hit_h;
 	int			pos_x;
 	int			pos_y;
 	int			height;

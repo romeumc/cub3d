@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:32:44 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/01 20:26:15 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/02 23:30:51 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	get_color_tex (t_texture *texture, t_ray *ray)
 	int	g;
 	int	b;
 
-	offset = (int)ray->y_tex * texture->timg.line_lenght + ray->pos_x
+	offset = (int)ray->y_tex * texture->timg.line_lenght + ray->x_tex
 		* (texture->timg.bits_per_pixel / 8);
 	a = texture->timg.addr[offset + 0];
 	r = texture->timg.addr[offset + 1];
@@ -72,6 +72,15 @@ void	draw_wall_stripe(t_game *game, t_img *img, t_ray *ray)
 	int	y;
 
 	ray->pos_y = (game->resolution.y - ray->height) / 2;
+	// if (ray->intersection == 'H')
+	// {
+	// 	ray->x_tex = ray->grid_hit_h % ray->tex.width;
+	// }
+	// else if (ray->intersection == 'V')
+	// {
+	// 	ray->x_tex = ray->grid_hit_v % ray->tex.width;
+	// }
+	ray->x_tex = ray->pos_x % ray->tex.width;
 	y = 0;
 	while (y < ray->height)
 	{

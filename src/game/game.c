@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:03:29 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/01 20:22:12 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/04 17:55:40 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	init_image(t_game *game)
 {
 	game->img.img = mlx_new_image(game->mlx,
 			game->resolution.x, game->resolution.y);
-	game->img.addr = mlx_get_data_addr(game->img.img,
+	game->img.addr = (int *)mlx_get_data_addr(game->img.img,
 			&game->img.bits_per_pixel,
 			&game->img.line_lenght, &game->img.endian);
 }
@@ -70,8 +70,8 @@ int	main_loop(t_game *game)
 	//mlx_string_put(game->mlx, game->win, 100, 500, 0xFF0000, game->t_no.path);
 	//display_image_texture(game, &game->t_so);
 	init_image(game);
-	draw_ceilling(game, game->img, game->ceilling);
-	draw_floor(game, game->img, game->floor);
+	draw_ceilling(game, game->ceilling);
+	draw_floor(game, game->floor);
 	draw_wall(game);
 	draw_world2d(game, game->map.tile_size);
 	draw_player2d(game);

@@ -6,13 +6,13 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:50:01 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/01 20:24:23 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/04 17:49:01 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	draw_circle(t_game *game, t_img *img, t_player *shape, int center)
+void	draw_circle(t_game *game, t_player *shape, int center)
 {
 	double	angle;
 	double	x1;
@@ -32,7 +32,7 @@ void	draw_circle(t_game *game, t_img *img, t_player *shape, int center)
 		{
 			x1 = sin(deg_to_rad(angle)) * radius + shape->pos_x;
 			y1 = cos(deg_to_rad(angle)) * radius + shape->pos_y;
-			my_mlx_pixelput(img, x1, y1, create_trgb(shape->color));
+			my_mlx_pixelput(game, x1, y1, create_trgb(shape->color));
 			angle++;
 		}
 		radius--;
@@ -52,7 +52,7 @@ void	draw_s_rectangle(t_game *game, int x, int y, int color)
 		j = 0;
 		while (j < game->map.tile_size / 2)
 		{
-			my_mlx_pixelput(&game->img, x + i, y + j, color);
+			my_mlx_pixelput(game, x + i, y + j, color);
 			j++;
 		}
 		i++;
@@ -70,7 +70,7 @@ void	draw_rectangle(t_game *game, int x, int y, int color)
 		j = 0;
 		while (j < game->map.tile_size)
 		{
-			my_mlx_pixelput(&game->img, x + i, y + j, color);
+			my_mlx_pixelput(game, x + i, y + j, color);
 			j++;
 		}
 		i++;

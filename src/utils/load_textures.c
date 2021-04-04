@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:38:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/01 20:21:45 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/04 17:55:34 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	load_tex(t_game *game, t_texture *tex)
 {
 	tex->timg.img = mlx_xpm_file_to_image(game->mlx, tex->path,
 			&tex->width, &tex->height);
-	tex->timg.addr = mlx_get_data_addr(tex->timg.img,
+	tex->timg.addr = (int *)mlx_get_data_addr(tex->timg.img,
 			&tex->timg.bits_per_pixel,
 			&tex->timg.line_lenght, &tex->timg.endian);
 }

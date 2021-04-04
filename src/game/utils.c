@@ -6,18 +6,19 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 22:00:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 23:13:43 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/04 17:55:50 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
 
-void	my_mlx_pixelput(t_img *img, int x, int y, int color)
+void	my_mlx_pixelput(t_game *game, int x, int y, int color)
 {
-	char	*dst;
+	// char	*dst;
 
-	dst = img->addr + (y * img->line_lenght + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	// dst = game->img.addr + (y * game->img.line_lenght + x * (game->img.bits_per_pixel / 8));
+	// *(unsigned int *)dst = color;
+	game->img.addr[(int)y * (int)game->resolution.x + (int)x] = color;
 }
 
 void	set_tile_size(t_game *game, int percentage)

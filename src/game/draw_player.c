@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:35:46 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/02 22:45:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/04 17:50:01 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_ray(t_game *game, t_player *line, double distance, double angle)
 	pixel_y = line->pos_y;
 	while (pixels)
 	{
-		my_mlx_pixelput(&game->img, (int)pixel_x, (int)pixel_y, 0xFF0000);
+		my_mlx_pixelput(game, (int)pixel_x, (int)pixel_y, 0xFF0000);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		pixels--;
@@ -42,7 +42,7 @@ void	setup_initial_player(t_game *game, int i, int j)
 	game->player.color = set_trgb(0xFF2222);
 	game->player.pos_x = game->map.tile_size * j;
 	game->player.pos_y = game->map.tile_size * i;
-	draw_circle(game, &game->img, &game->player, 1);
+	draw_circle(game, &game->player, 1);
 	game->player.angle = get_start_direction(game->player.direction);
 }
 
@@ -68,7 +68,7 @@ void	draw_player2d(t_game *game)
 	}
 	else if (game->player.valid == 2)
 	{
-		draw_circle(game, &game->img, &game->player, 0);
+		draw_circle(game, &game->player, 0);
 		game->player.delta_x = cos(deg_to_rad(game->player.angle));
 		game->player.delta_y = sin(deg_to_rad(game->player.angle));
 		//draw_ray(game, &game->player, 10, game->player.angle);

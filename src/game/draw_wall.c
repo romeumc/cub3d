@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:32:44 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/04 18:45:11 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:46:39 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_texture	get_texture_of_wall(t_game *game, t_ray *ray)
 
 int	get_color_tex (t_texture *texture, t_ray *ray)
 {
+	int	color;
 	// int	offset;
 	// int	a;
 	// int	r;
@@ -65,29 +66,27 @@ int	get_color_tex (t_texture *texture, t_ray *ray)
 	// g = texture->timg.addr[offset + 2];
 	// b = texture->timg.addr[offset + 3];
 	// return (b << 24 | g << 16 | r << 8 | a);
-	
-	int color;
 	color = texture->timg.addr[ray->y_tex * texture->height + ray->x_tex];
 	return (color);
 }
 
-int		get_bitmap_offset(t_ray *ray, int bitmap_width)
-{
-	double	remainder;
-	int		offset;
+// int	get_bitmap_offset(t_ray *ray, int bitmap_width)
+// {
+// 	double	remainder;
+// 	int		offset;
 
-	if (ray->intersection == 'H')
-	{
-		remainder = (ray->grid_hit_h / 64) - floor(ray->grid_hit_h / 64);
-		offset = bitmap_width * remainder;
-	}
-	else
-	{
-		remainder = (ray->grid_hit_v / 64) - floor(ray->grid_hit_v / 64);
-		offset = bitmap_width * remainder;
-	}
-	return (offset);
-}
+// 	if (ray->intersection == 'H')
+// 	{
+// 		remainder = (ray->grid_hit_h / 64) - floor(ray->grid_hit_h / 64);
+// 		offset = bitmap_width * remainder;
+// 	}
+// 	else
+// 	{
+// 		remainder = (ray->grid_hit_v / 64) - floor(ray->grid_hit_v / 64);
+// 		offset = bitmap_width * remainder;
+// 	}
+// 	return (offset);
+// }
 
 void	draw_wall_stripe(t_game *game, t_ray *ray)
 {

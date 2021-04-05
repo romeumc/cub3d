@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:49:40 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/04 18:11:59 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/05 12:57:06 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define ROTATION_STEP		1
 # define FIELD_OF_VIEW		60
 # define MINI_MAP_PERCENT	30
-# define DISTANCE_TO_WALL	4
+# define DISTANCE_TO_WALL	1
 # define SCALE				5
 
 int		close_game(t_game *game);

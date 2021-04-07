@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 22:30:33 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/04 18:30:50 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/06 15:10:46 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ double	get_ray_distance_hn(t_game *game, t_player *player, t_ray *ray)
 	step_x = step_y / tan(deg_to_rad(ray->angle));
 	ray_x = player->pos_x + step_x;
 	if (is_wall(&game->map, ray_x, ray_y - 1) == 1)
+	{
+		ray->grid_hit_h = ray_x * game->map.tile_size;
 		return (pythagorean(player->pos_x - ray_x, player->pos_y - ray_y));
+	}
 	step_y = -game->map.tile_size;
 	step_x = step_y / tan(deg_to_rad(ray->angle));
 	while (is_wall(&game->map, ray_x, ray_y - 1) == 0)
@@ -32,7 +35,7 @@ double	get_ray_distance_hn(t_game *game, t_player *player, t_ray *ray)
 		ray_x += step_x;
 		ray_y += step_y;
 	}
-	ray->grid_hit_h = ray_x;
+	ray->grid_hit_h = ray_x * game->map.tile_size;
 	return (pythagorean(player->pos_x - ray_x, player->pos_y - ray_y));
 }
 
@@ -48,7 +51,10 @@ double	get_ray_distance_hs(t_game *game, t_player *player, t_ray *ray)
 	step_x = step_y / tan(deg_to_rad(ray->angle));
 	ray_x = player->pos_x + step_x;
 	if (is_wall(&game->map, ray_x, ray_y + 1) == 1)
+	{
+		ray->grid_hit_h = ray_x * game->map.tile_size;
 		return (pythagorean(player->pos_x - ray_x, player->pos_y - ray_y));
+	}
 	step_y = game->map.tile_size;
 	step_x = step_y / tan(deg_to_rad(ray->angle));
 	while (is_wall(&game->map, ray_x, ray_y + 1) == 0)
@@ -56,7 +62,7 @@ double	get_ray_distance_hs(t_game *game, t_player *player, t_ray *ray)
 		ray_x += step_x;
 		ray_y += step_y;
 	}
-	ray->grid_hit_h = ray_x;
+	ray->grid_hit_h = ray_x * game->map.tile_size;
 	return (pythagorean(player->pos_x - ray_x, player->pos_y - ray_y));
 }
 

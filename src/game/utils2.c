@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:31:32 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 00:21:03 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/06 11:16:49 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ double	get_start_direction(char direction)
 {
 	double	angle;
 
+	angle = 0;
 	if (direction == 'N')
 		angle = 270;
 	else if (direction == 'S')

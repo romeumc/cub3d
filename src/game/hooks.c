@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:44:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/01 20:23:16 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:20:14 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,30 +51,45 @@ static void	walk(t_game *game, t_player *player, char keycode)
 	}
 }
 
+void	minimap_key_hook(int keycode, t_game *game)
+{
+	if (keycode == KEY_M)
+	{
+		if (game->map.toggle_minimap == 0)
+			game->map.toggle_minimap = 1;
+		else
+			game->map.toggle_minimap = 0;
+	}
+	else if (keycode == KEY_PLUS)
+	{
+		game->map.fov = 30;
+		game->map.scale = 10;
+	}
+	else if (keycode == KEY_MINUS)
+	{
+		game->map.fov = 60;
+		game->map.scale = 5;
+	}
+}
+
 int	key_hook(int keycode, t_game *game)
 {
+	//printf("keycode:%d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_game(game);
 	else if (keycode == KEY_A)
-	{
 		side_walk(game, &game->player, -90);
-	}
 	else if (keycode == KEY_D)
-	{
 		side_walk(game, &game->player, 90);
-	}
 	else if (keycode == KEY_W)
-	{
 		walk(game, &game->player, 'W');
-	}
 	else if (keycode == KEY_S)
-	{
 		walk(game, &game->player, 'S');
-	}
 	else if (keycode == RIGHT_ARROW)
 		rotate_player(&game->player, ROTATION_STEP * 1);
 	else if (keycode == LEFT_ARROW)
 		rotate_player(&game->player, ROTATION_STEP * -1);
+	minimap_key_hook(keycode, game);
 	return (1);
 }
 

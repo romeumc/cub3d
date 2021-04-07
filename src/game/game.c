@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:03:29 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/06 14:19:32 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:13:52 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,42 +46,18 @@ void	display_image_texture(t_game *game, t_texture *tex)
 	mlx_destroy_image(game->mlx, tex->timg.img);
 }
 
-// void	display_image_texture(t_game *game, t_texture *tex)
-// {
-// 	int		i;
-
-// 	tex->timg.img = mlx_xpm_file_to_image(game->mlx, tex->path,
-// 			&tex->width, &tex->height);
-// 	tex->timg.addr = mlx_get_data_addr(tex->timg.img,
-// 			&tex->timg.bits_per_pixel,
-// 			&tex->timg.line_lenght, &tex->timg.endian);
-// 	i = 0;
-// 	while (i < 1200)
-// 	{
-// 		mlx_put_image_to_window(game->mlx, game->win, tex->timg.img, i, 0);
-// 		i += tex->width;
-// 	}
-// 	mlx_destroy_image(game->mlx, tex->timg.img);
-// }
-
 int	main_loop(t_game *game)
 {
 	/* testes */
 	//mlx_string_put(game->mlx, game->win, 100, 500, 0xFF0000, game->t_no.path);
-	//display_image_texture(game, &game->t_we);
+	//display_image_texture(game, &game->t_sprite);
 	init_image(game);
+	draw_minimap(game);
 	draw_ceilling(game, game->ceilling);
 	draw_floor(game, game->floor);
-	draw_world2d(game, game->map.tile_size);
-	draw_player2d(game);
-	draw_rays2d(game);
-	
-	draw_wall(game);
-
-	draw_world2d(game, game->map.tile_size);
-	draw_player2d(game);
-	draw_rays2d(game);
-	
+	draw_wall(game, game->map);
+	if (game->map.toggle_minimap == 1)
+		draw_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 	mlx_destroy_image(game->mlx, game->img.img);
 	return (0);

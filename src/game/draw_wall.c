@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:32:44 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 11:41:01 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:15:52 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,32 @@ t_texture	get_texture_of_wall(t_game *game, t_ray *ray)
 	return (game->t_no);
 }
 
+// int	get_color_tex (t_texture *texture, t_ray *ray)
+// {
+// 	int	offset;
+// 	int	a;
+// 	int	r;
+// 	int	g;
+// 	int	b;
+
+// 	offset = (int)ray->y_tex * texture->timg.line_lenght + ray->x_tex
+// 		* (texture->timg.bits_per_pixel / 8);
+// 	a = texture->timg.addr[offset + 0];
+// 	r = texture->timg.addr[offset + 1];
+// 	g = texture->timg.addr[offset + 2];
+// 	b = texture->timg.addr[offset + 3];
+// 	return (b << 24 | g << 16 | r << 8 | a);
+// }
+
 int	get_color_tex (t_texture *texture, t_ray *ray)
 {
 	int	color;
-	// int	offset;
-	// int	a;
-	// int	r;
-	// int	g;
-	// int	b;
 
-	// offset = (int)ray->y_tex * texture->timg.line_lenght + ray->x_tex
-	// 	* (texture->timg.bits_per_pixel / 8);
-	// a = texture->timg.addr[offset + 0];
-	// r = texture->timg.addr[offset + 1];
-	// g = texture->timg.addr[offset + 2];
-	// b = texture->timg.addr[offset + 3];
-	// return (b << 24 | g << 16 | r << 8 | a);
-	//ray->y_tex += (int)ray->tex_offset;
 	color = texture->timg.addr[ray->y_tex * texture->height + ray->x_tex];
 	return (color);
 }
 
-void	draw_wall_stripe(t_game *game, t_ray *ray)
+void	draw_wall_slice(t_game *game, t_ray *ray)
 {
 	int	y;
 
@@ -94,19 +98,19 @@ void	draw_wall_stripe(t_game *game, t_ray *ray)
 	}
 }
 
-void	draw_wall(t_game *game)
+void	draw_wall(t_game *game, t_map map)
 {
 	double	fisheye;
 	int		pixel_x;
 	t_ray	ray;
 
 	pixel_x = 0;
-	ray.angle = fix_ang(game->player.angle - FIELD_OF_VIEW / 2);
+	ray.angle = fix_ang(game->player.angle - game->map.fov / 2);
 	while (pixel_x < game->resolution.x)
 	{
 		fisheye = cos(deg_to_rad(fix_ang(game->player.angle - ray.angle)));
 		ray.distance = cast_ray(game, ray.angle, &ray);
-		ray.height = SCALE * game->resolution.x / (ray.distance * fisheye);
+		ray.height = map.scale * game->resolution.x / (ray.distance * fisheye);
 		ray.tex = get_texture_of_wall(game, &ray);
 		ray.tex_step = 1.0 * ray.tex.height / ray.height;
 		ray.tex_offset = 0;
@@ -116,9 +120,8 @@ void	draw_wall(t_game *game)
 			ray.height = game->resolution.y;
 		}
 		ray.pos_x = pixel_x;
-		draw_wall_stripe(game, &ray);
-		ray.angle = fix_ang(ray.angle + FIELD_OF_VIEW * 1.0
-				/ game->resolution.x);
+		draw_wall_slice(game, &ray);
+		ray.angle = fix_ang(ray.angle + map.fov * 1.0 / game->resolution.x);
 		pixel_x++;
 	}
 }

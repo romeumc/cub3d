@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/04 17:55:30 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:08:23 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_map
 	char	**grid;
 	int		valid;
 	int		tile_size;
+	int		toggle_minimap;
+	int		fov;
+	int		scale;
 }	t_map;
 
 typedef struct s_color

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:36:43 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/31 15:31:52 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 16:08:46 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ static void	init_resolution(t_resolution *resolution)
 
 static void	init_map(t_map *map)
 {
+	map->toggle_minimap = 1;
+	map->fov = FIELD_OF_VIEW;
+	map->scale = SCALE;
 	map->rows = 0;
 	map->cols = 0;
 	map->valid = 0;

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 12:50:01 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/04 17:49:01 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:22:06 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	draw_circle(t_game *game, t_player *shape, int center)
 		{
 			x1 = sin(deg_to_rad(angle)) * radius + shape->pos_x;
 			y1 = cos(deg_to_rad(angle)) * radius + shape->pos_y;
-			my_mlx_pixelput(game, x1, y1, create_trgb(shape->color));
+			my_mlx_pixelput(game, x1 + MINI_MAP_OFFSET,
+				y1 + MINI_MAP_OFFSET, create_trgb(shape->color));
 			angle++;
 		}
 		radius--;

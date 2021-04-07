@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:31:32 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/06 11:16:49 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:23:05 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ double	get_start_direction(char direction)
 void	rotate_player(t_player *player, int rotation)
 {
 	player->angle = fix_ang(player->angle + rotation);
-	//printf(ANSI_F_CYAN "Rotation:%d Angle: %d\n" ANSI_RESET,
-	//	rotation, (int)player->angle);
 }
 
 int	is_wall(t_map *map, int screen_x, int screen_y)

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:48:48 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 14:26:23 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:21:05 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	free_game(t_game *game)
 		free(game->t_we.path);
 	if (game->t_ea.valid != 0)
 		free(game->t_ea.path);
-	if (game->t_sprite.valid != 0)
-		free(game->t_sprite.path);
+	if (game->tex_sprite.valid != 0)
+		free(game->tex_sprite.path);
 	if (game->map.valid != 0)
 		ft_free_array_array(game->map.grid);
 }

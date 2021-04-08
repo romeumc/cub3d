@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 12:38:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/29 17:31:38 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:20:22 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	debug___________________________game(t_game *game, int flag)
 		printf("texture_so:[%s]\n", game->t_so.path);
 		printf("texture_we:[%s]\n", game->t_we.path);
 		printf("texture_ea:[%s]\n", game->t_ea.path);
-		printf("texture_sprite:[%s]\n", game->t_sprite.path);
+		printf("texture_sprite:[%s]\n", game->tex_sprite.path);
 		printf("floor:[%d][%d][%d]\n", game->floor.color.red,
 			game->floor.color.green, game->floor.color.blue);
 		printf("ceilling:[%d][%d][%d]\n", game->ceilling.color.red,
@@ -32,7 +32,7 @@ static void	debug___________________________game(t_game *game, int flag)
 		printf("valid map texture_so: %d\n", game->t_so.valid);
 		printf("valid map texture_we: %d\n", game->t_we.valid);
 		printf("valid map texture_ea: %d\n", game->t_ea.valid);
-		printf("valid map texture_sprite: %d\n", game->t_sprite.valid);
+		printf("valid map texture_sprite: %d\n", game->tex_sprite.valid);
 		printf("valid map floor: %d\n", game->floor.valid);
 		printf("valid map ceilling: %d\n", game->ceilling.valid);
 		printf("player dir: %c\n", game->player.direction);
@@ -48,7 +48,7 @@ void	check_map_errors(t_game *game)
 		|| game->t_so.valid <= 0
 		|| game->t_we.valid <= 0
 		|| game->t_ea.valid <= 0
-		|| game->t_sprite.valid <= 0
+		|| game->tex_sprite.valid <= 0
 		|| game->floor.valid <= 0
 		|| game->ceilling.valid <= 0
 		|| game->other_error < 0

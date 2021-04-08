@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:49:40 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 16:15:35 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 19:50:40 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "ft_structs.h"
 
+# define M_PI				3.14159265358979323846
+# define M_2PI				6.283185307179586232
 # define PLAYER_STEP		1
 # define PLAYER_SIZE		6
 # define ROTATION_STEP		1
@@ -59,5 +61,8 @@ void	draw_wall(t_game *game, t_map map);
 void	free_textures(t_game *game);
 
 void	free_tex(t_game *game, t_texture *tex);
+
+void	get_sprites(t_map *map);
+void	draw_sprites(t_game *game);
 
 #endif

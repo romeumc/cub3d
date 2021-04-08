@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:58:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/29 17:29:48 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:19:54 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	parse_map(char *line, t_game *game)
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 		get_texture(line, &game->t_ea, game);
 	else if (ft_strncmp(line, "S ", 2) == 0)
-		get_texture(line, &game->t_sprite, game);
+		get_texture(line, &game->tex_sprite, game);
 	else if (ft_strncmp(line, "F ", 2) == 0)
 		get_color(line, &game->floor, game);
 	else if (ft_strncmp(line, "C ", 2) == 0)

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 16:08:23 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/08 00:58:07 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,30 @@ typedef struct s_resolution
 	int		valid;
 }	t_resolution;
 
+typedef struct s_sprite
+{
+	double	grid_x;
+	double	grid_y;
+	double	angle;
+	double	distance;
+	int		visible;
+	double	height;
+	int		pos_y;
+	int		pos_x;
+}	t_sprite;
+
 typedef struct s_map
 {
-	int		rows;
-	int		cols;
-	char	**grid;
-	int		valid;
-	int		tile_size;
-	int		toggle_minimap;
-	int		fov;
-	int		scale;
+	int			rows;
+	int			cols;
+	char		**grid;
+	int			valid;
+	int			tile_size;
+	int			toggle_minimap;
+	int			fov;
+	int			scale;
+	int			total_sprites;
+	t_sprite	*sprite;
 }	t_map;
 
 typedef struct s_color
@@ -93,7 +107,7 @@ typedef struct s_game
 	t_texture		t_so;
 	t_texture		t_ea;
 	t_texture		t_we;
-	t_texture		t_sprite;
+	t_texture		tex_sprite;
 	t_pane			floor;
 	t_pane			ceilling;
 }	t_game;

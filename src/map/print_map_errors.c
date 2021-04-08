@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 09:53:59 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/22 09:54:10 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:20:35 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	print_map_errors(t_game *game)
 		print_error_description(game->t_so.valid, "SO Texture");
 		print_error_description(game->t_we.valid, "WE Texture");
 		print_error_description(game->t_ea.valid, "EA Texture");
-		print_error_description(game->t_sprite.valid, "SPRITE Texture");
+		print_error_description(game->tex_sprite.valid, "SPRITE Texture");
 		print_error_description(game->floor.valid, "Floor Color");
 		print_error_description(game->ceilling.valid, "Ceilling Color");
 		print_error_description(game->map.valid, "Map");

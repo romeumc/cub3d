@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:36:43 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 16:08:46 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:59:38 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	init_map(t_map *map)
 	map->cols = 0;
 	map->valid = 0;
 	map->grid = malloc(sizeof(char *) * 200);
+	map->total_sprites = 0;
 	if (map->grid == NULL)
 		exit (0);
 }
@@ -51,7 +52,7 @@ void	init_structures(t_game *game)
 	init_texture(&game->t_so);
 	init_texture(&game->t_we);
 	init_texture(&game->t_ea);
-	init_texture(&game->t_sprite);
+	init_texture(&game->tex_sprite);
 	init_pane(&game->floor);
 	init_pane(&game->ceilling);
 	init_map(&game->map);

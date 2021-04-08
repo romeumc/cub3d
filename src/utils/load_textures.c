@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 19:38:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/04 17:55:34 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/07 17:19:34 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	load_textures(t_game *game)
 	load_tex(game, &game->t_we);
 	load_tex(game, &game->t_no);
 	load_tex(game, &game->t_so);
-	load_tex(game, &game->t_sprite);
+	load_tex(game, &game->tex_sprite);
 }
 
 void	free_textures(t_game *game)
@@ -41,5 +41,5 @@ void	free_textures(t_game *game)
 	free_tex(game, &game->t_we);
 	free_tex(game, &game->t_no);
 	free_tex(game, &game->t_so);
-	free_tex(game, &game->t_sprite);
+	free_tex(game, &game->tex_sprite);
 }

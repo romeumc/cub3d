@@ -6,20 +6,11 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:31:32 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 14:23:05 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:04:41 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
-
-double	fix_ang(double a)
-{
-	if (a > 360)
-		a -= 360;
-	if (a < 0)
-		a += 360;
-	return (a);
-}
 
 double	get_start_direction(char direction)
 {
@@ -39,7 +30,7 @@ double	get_start_direction(char direction)
 
 void	rotate_player(t_player *player, int rotation)
 {
-	player->angle = fix_ang(player->angle + rotation);
+	player->angle = fix_deg(player->angle + rotation);
 }
 
 int	is_wall(t_map *map, int screen_x, int screen_y)

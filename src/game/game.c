@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:03:29 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 18:30:12 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/08 11:33:15 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,6 @@ void	rungame(t_game *game)
 	load_textures(game);
 	get_sprites(&game->map);
 	printf("TOTAL SPRITES:%d\n", game->map.total_sprites);
-	// printf("sprite[0] x:%f y:%f\n", game->map.sprite[0].x, game->map.sprite[0].y);
-	// printf("sprite[1] x:%f y:%f\n", game->map.sprite[1].x, game->map.sprite[1].y);
-	// printf("sprite[2] x:%f y:%f\n", game->map.sprite[2].x, game->map.sprite[2].y);
-	// printf("sprite[3] x:%f y:%f\n", game->map.sprite[3].x, game->map.sprite[3].y);
 	//free_textures(game);
 	// mlx_get_screen_size(game->mlx, &sizex, &sizey);
 	// printf("Resolution - x:%d y:%d\n", sizex, sizey);

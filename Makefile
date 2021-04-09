@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/04/07 18:18:12 by rmartins         ###   ########.fr        #
+#    Updated: 2021/04/09 15:22:33 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRC = cub3d.c \
 		game/draw_shapes.c \
 		game/utils.c \
 		game/utils2.c \
+		game/utils_angle.c \
 		game/draw_player.c \
 		game/ray_vertical_interception.c \
 		game/ray_horizontal_interception.c \
@@ -67,6 +68,7 @@ SRC = cub3d.c \
 		game/draw_wall.c \
 		game/ray.c \
 		game/get_sprite.c \
+		game/prepare_sprite.c \
 		game/draw_sprite.c
 
 all: $(NAME)
@@ -150,7 +152,7 @@ runs: all
 	gcc $(CFLAGS) -fsanitize=address $(OBJ) $(LIBFT) $(MLX_FLAGS) -o cub3DS
 	./cub3DS $(MAP)
 
-MAP = resources/maps/romeu.cub
+MAP = resources/maps/romeu1.cub
 #MAP = resources/maps/test5.cub
 #MAP = resources/maps/invalid_map_area_010.cub
 #MAP = resources/maps/invalid_MAP11.cub

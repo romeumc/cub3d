@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:49:40 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 19:50:40 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/09 11:45:50 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ t_color	set_trgb(int temp_color);
 void	check_wall(t_game *game, char wall);
 void	rotate_player(t_player *player, int rotation);
 
-double	fix_ang(double a);
 double	get_start_direction(char direction);
 void	rotate_player(t_player *player, int rotation);
 
@@ -63,6 +62,9 @@ void	free_textures(t_game *game);
 void	free_tex(t_game *game, t_texture *tex);
 
 void	get_sprites(t_map *map);
+void	get_sprite_info(t_map map, t_sprite *sprite, t_player player);
+void	sort_sprites(t_map map, t_sprite *sprite);
 void	draw_sprites(t_game *game);
+int		get_color_tex (t_texture *texture, t_ray *ray);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/08 00:58:07 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/09 11:51:41 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_sprite
 	double	height;
 	int		pos_y;
 	int		pos_x;
+	double	slice_width;
 }	t_sprite;
 
 typedef struct s_map

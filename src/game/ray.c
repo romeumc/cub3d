@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 15:27:21 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 16:10:06 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:04:45 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	draw_rays2d(t_game *game)
 	double	distance;
 	t_ray	ray;
 
-	ray_angle = fix_ang(game->player.angle - game->map.fov / 2);
+	ray_angle = fix_deg(game->player.angle - game->map.fov / 2);
 	rays = game->map.fov;
 	while (rays > 0)
 	{
 		distance = cast_ray(game, ray_angle, &ray);
 		draw_ray(game, &game->player, distance, ray_angle);
 		ray_angle++;
-		ray_angle = fix_ang(ray_angle);
+		ray_angle = fix_deg(ray_angle);
 		rays--;
 	}
 }

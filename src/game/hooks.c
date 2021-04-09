@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:44:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 16:20:14 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:04:45 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	side_walk(t_game *game, t_player *player, int angle)
 {
 	t_ray	ray;
 
-	angle = fix_ang(player->angle + angle);
+	angle = fix_deg(player->angle + angle);
 	if (cast_ray(game, angle, &ray) > DISTANCE_TO_WALL)
 	{
 		player->delta_x = cos(deg_to_rad(angle));
@@ -33,7 +33,7 @@ static void	walk(t_game *game, t_player *player, char keycode)
 
 	if (keycode == 'W')
 	{
-		angle = fix_ang(player->angle);
+		angle = fix_deg(player->angle);
 		if (cast_ray(game, angle, &ray) > DISTANCE_TO_WALL)
 		{
 			player->pos_x += player->delta_x * PLAYER_STEP;
@@ -42,7 +42,7 @@ static void	walk(t_game *game, t_player *player, char keycode)
 	}
 	else if (keycode == 'S')
 	{
-		angle = fix_ang(player->angle - 180);
+		angle = fix_deg(player->angle - 180);
 		if (cast_ray(game, angle, &ray) > DISTANCE_TO_WALL)
 		{
 			player->pos_x -= player->delta_x * PLAYER_STEP;

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 22:00:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 14:25:42 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/08 10:01:36 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,4 @@ t_color	set_trgb(int temp_color)
 	color.green = (temp_color >> 8) & 0xFF;
 	color.blue = temp_color & 0xFF;
 	return (color);
-}
-
-double	deg_to_rad(double deg)
-{
-	return (deg * M_PI / 180.0);
 }

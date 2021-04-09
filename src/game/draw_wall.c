@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:32:44 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 16:15:52 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/08 11:19:56 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,10 @@ void	draw_wall(t_game *game, t_map map)
 	t_ray	ray;
 
 	pixel_x = 0;
-	ray.angle = fix_ang(game->player.angle - game->map.fov / 2);
+	ray.angle = fix_deg(game->player.angle - game->map.fov / 2);
 	while (pixel_x < game->resolution.x)
 	{
-		fisheye = cos(deg_to_rad(fix_ang(game->player.angle - ray.angle)));
+		fisheye = cos(deg_to_rad(game->player.angle - ray.angle));
 		ray.distance = cast_ray(game, ray.angle, &ray);
 		ray.height = map.scale * game->resolution.x / (ray.distance * fisheye);
 		ray.tex = get_texture_of_wall(game, &ray);
@@ -121,7 +121,7 @@ void	draw_wall(t_game *game, t_map map)
 		}
 		ray.pos_x = pixel_x;
 		draw_wall_slice(game, &ray);
-		ray.angle = fix_ang(ray.angle + map.fov * 1.0 / game->resolution.x);
+		ray.angle = fix_deg(ray.angle + map.fov * 1.0 / game->resolution.x);
 		pixel_x++;
 	}
 }

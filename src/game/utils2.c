@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:31:32 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/08 10:04:41 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/09 17:49:53 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ double	get_start_direction(char direction)
 	return (angle);
 }
 
-void	rotate_player(t_player *player, int rotation)
+void	rotate_player(t_player *player, double rotation)
 {
 	player->angle = fix_deg(player->angle + rotation);
 }

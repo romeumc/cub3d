@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:49:40 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/09 11:45:50 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/09 19:01:05 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,9 @@ void	set_tile_size(t_game *game, int percentage);
 int		create_trgb(t_color color);
 t_color	set_trgb(int temp_color);
 void	check_wall(t_game *game, char wall);
-void	rotate_player(t_player *player, int rotation);
+void	rotate_player(t_player *player, double rotation);
 
 double	get_start_direction(char direction);
-void	rotate_player(t_player *player, int rotation);
 
 void	draw_rays2d(t_game *game);
 double	get_ray_distance_v(t_game *game, t_player *player, t_ray *ray);

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:44:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/08 10:04:45 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/09 17:49:04 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ int	key_hook(int keycode, t_game *game)
 	else if (keycode == KEY_S)
 		walk(game, &game->player, 'S');
 	else if (keycode == RIGHT_ARROW)
-		rotate_player(&game->player, ROTATION_STEP * 1);
+		rotate_player(&game->player, ROTATION_STEP * 1.0);
 	else if (keycode == LEFT_ARROW)
-		rotate_player(&game->player, ROTATION_STEP * -1);
+		rotate_player(&game->player, ROTATION_STEP * -1.0);
 	minimap_key_hook(keycode, game);
 	return (1);
 }

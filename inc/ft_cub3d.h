@@ -6,16 +6,16 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 14:55:42 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 20:27:07 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:34:11 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_CUB3D_H
 # define FT_CUB3D_H
 
-//# include <mlx.h>
+# include <mlx.h>
 //# include "../mlx/mlx.h"
-# include "../mlxbeta/mlx.h"
+// # include "../mlxbeta/mlx.h"
 # include "../libft/libft.h"
 # include "ft_utils.h"
 # include "ft_map.h"
@@ -32,5 +32,6 @@ void	open_map_file(char *filename, t_game *game);
 void	rungame(t_game *game);
 void	print_array(t_game *game);
 void	print_map_ascii(t_game *game);
+void	save_bmp(t_game *game);
 
 #endif

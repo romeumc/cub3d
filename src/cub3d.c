@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:03:17 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/30 21:49:50 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/11 21:36:27 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	main(int argc, char **argv)
 
 	validate_args(argc, argv);
 	init_structures(&game);
+	if (ft_strequ(argv[2], "--save"))
+		game.mode = 's';
 	open_map_file(argv[1], &game);
 	check_map_errors(&game);
 	print_map_ascii(&game);

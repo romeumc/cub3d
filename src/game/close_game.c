@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:48:48 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 17:21:05 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/11 20:05:21 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	close_game(t_game *game)
 	mlx_clear_window(game->mlx, game->win);
 	mlx_destroy_window(game->mlx, game->win);
 	free_game(game);
+	mlx_do_key_autorepeatoff(game->mlx);
 	exit(0);
 }

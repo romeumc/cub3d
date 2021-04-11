@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:43:53 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/08 10:06:31 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:20:29 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,10 @@ double	deg_to_rad(double deg);
 double	fix_rad(double radian);
 double	rad_to_deg(double rad);
 double	fix_deg(double a);
+
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
 
 #endif

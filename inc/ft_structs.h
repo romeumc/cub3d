@@ -6,12 +6,14 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:05:50 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/09 17:46:38 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:22:51 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_STRUCTS_H
 # define FT_STRUCTS_H
+
+# include <stdint.h>
 
 typedef struct s_img
 {
@@ -97,6 +99,7 @@ typedef struct s_pane
 
 typedef struct s_game
 {
+	char			mode;
 	void			*mlx;
 	void			*win;
 	t_img			img;
@@ -129,5 +132,28 @@ typedef struct s_ray
 	double		angle;
 	t_texture	tex;
 }	t_ray;
+
+typedef struct s_bmp_header
+{
+	char		byte_signature[2];
+	uint32_t	size;
+	uint32_t	reserved_bytes;
+	uint32_t	byte_offset;
+}	t_bmp_header;
+
+typedef struct s_dib_header
+{
+	uint32_t	dib_header_size;
+	int32_t		width;
+	int32_t		height;
+	uint16_t	number_color_planes;
+	uint16_t	bpp;
+	uint32_t	compression_method;
+	uint32_t	raw_bitmap_data_size;
+	int32_t		horizontal_resolution;
+	int32_t		vertical_resolution;
+	uint32_t	color_table;
+	uint32_t	important_colors;
+}	t_dib_header;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 11:44:27 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/09 17:30:12 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/11 17:10:26 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	get_sprite_info(t_map map, t_sprite *sprite, t_player player)
 	double	fov_min_angle;
 	double	fov_max_angle;
 
-	fov_min_angle = 360 - (map.fov / 2);
-	fov_max_angle = 0 + (map.fov / 2);
+	fov_min_angle = 360 - (map.fov / 2) - map.fov * 0.2;
+	fov_max_angle = 0 + (map.fov / 2) + map.fov * 0.2;
 	i = 0;
 	while (i < map.total_sprites)
 	{

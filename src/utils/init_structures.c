@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 22:36:43 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 17:59:38 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/11 22:06:36 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	init_map(t_map *map)
 
 void	init_structures(t_game *game)
 {
+	game->mode = 'p';
 	game->player.valid = 0;
 	init_resolution(&game->resolution);
 	init_texture(&game->t_no);

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 17:44:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/09 17:49:04 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:29:59 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	minimap_key_hook(int keycode, t_game *game)
 
 int	key_hook(int keycode, t_game *game)
 {
-	//printf("keycode:%d\n", keycode);
 	if (keycode == KEY_ESC)
 		close_game(game);
 	else if (keycode == KEY_A)
@@ -90,12 +89,5 @@ int	key_hook(int keycode, t_game *game)
 	else if (keycode == LEFT_ARROW)
 		rotate_player(&game->player, ROTATION_STEP * -1.0);
 	minimap_key_hook(keycode, game);
-	return (1);
-}
-
-int	mouse_hook(int button, int x, int y, t_game *game)
-{
-	printf("button:%d x:%d y:%d\n", button, x, y);
-	(void)game;
 	return (1);
 }

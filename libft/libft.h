@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 21:30:52 by rmartins          #+#    #+#             */
-/*   Updated: 2021/03/20 18:28:40 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:50:59 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # define LIBFT_H
 # include <stdlib.h>
 
-typedef struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}	t_list;
 
 void				*ft_memset(void *s, int c, size_t n);
 void				ft_bzero(void *s, size_t n);
@@ -46,7 +46,7 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t				ft_strlcpy(char *dst, const char *src, size_t size);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 char				*ft_strnstr(const char *big, const char *little,
-								size_t len);
+						size_t len);
 int					ft_atoi(const char *nptr);
 char				*ft_strdup(const char *s);
 void				*ft_calloc(size_t nmemb, size_t size);
@@ -69,7 +69,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void*));
 void				ft_lstclear(t_list **lst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-					void (*del)(void *));
+						void (*del)(void *));
 char				*ft_strcpy(char *dest, const char *src);
 int					ft_putchar(int c);
 void				ft_putstr(char *s);
@@ -96,7 +96,7 @@ void				*ft_realloc(void *ptr, size_t size);
 void				ft_putnstr(char *s, size_t n);
 char				*ft_ulong_tobase(unsigned long int nbr, char *base);
 char				*ft_ulonglong_tobase(unsigned long long int nbr,
-									char *base);
+						char *base);
 int					ft_getsize_ulonginbase(unsigned long number, char *base);
 char				*ft_longtoa(long n);
 char				*ft_longlongtoa(long long n);

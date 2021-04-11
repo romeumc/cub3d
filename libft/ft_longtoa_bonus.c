@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:21:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/02/22 22:13:34 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:39:45 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	ft_putnbr_str(long nb, char *str, int len)
 	}
 }
 
-char		*ft_longtoa(long n)
+char	*ft_longtoa(long n)
 {
 	int		len;
 	char	*str;

@@ -6,15 +6,15 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 22:28:57 by rmartins          #+#    #+#             */
-/*   Updated: 2021/02/12 14:05:37 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:39:24 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_print_radix(long int nbr, char *base, char *result, int *pos)
+void	ft_print_radix(long int nbr, char *base, char *result, int *pos)
 {
-	int len_base;
+	int	len_base;
 
 	len_base = ft_strlen(base);
 	if (nbr < 0)
@@ -35,7 +35,7 @@ void		ft_print_radix(long int nbr, char *base, char *result, int *pos)
 
 static char	*getbase(int numbase, char *base)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < numbase)
@@ -50,7 +50,7 @@ static char	*getbase(int numbase, char *base)
 	return (base);
 }
 
-char		*ft_itoa_base(int number, int numbase)
+char	*ft_itoa_base(int number, int numbase)
 {
 	char	*result;
 	char	*base;

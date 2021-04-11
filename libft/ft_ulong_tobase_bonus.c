@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 11:12:23 by rmartins          #+#    #+#             */
-/*   Updated: 2021/02/27 22:38:42 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:42:43 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_print_radix(unsigned long nb, char *base, char *result, int *pos)
 	}
 }
 
-char		*ft_ulong_tobase(unsigned long int nbr, char *base)
+char	*ft_ulong_tobase(unsigned long int nbr, char *base)
 {
 	char	*result;
 	int		pos;

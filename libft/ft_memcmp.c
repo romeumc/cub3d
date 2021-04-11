@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 23:00:39 by rmartins          #+#    #+#             */
-/*   Updated: 2021/02/12 10:50:53 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:40:23 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	size_t			i;
 
 	i = 0;
-	a = (unsigned char*)s1;
-	b = (unsigned char*)s2;
+	a = (unsigned char *)s1;
+	b = (unsigned char *)s2;
 	while (i < n && a[i] == b[i])
 		i++;
 	if (i == n)

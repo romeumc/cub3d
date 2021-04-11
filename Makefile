@@ -6,7 +6,7 @@
 #    By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/05 12:40:25 by rmartins          #+#    #+#              #
-#    Updated: 2021/04/12 00:20:55 by rmartins         ###   ########.fr        #
+#    Updated: 2021/04/12 00:53:57 by rmartins         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -126,6 +126,7 @@ lib:
 
 norm:
 	@echo $(ANSI_B_RED) "norminette v3" $(ANSI_RESET)
+	$(MAKE) norm -C libft
 	@norminette $(addprefix inc/,$(HEADER)) $(addprefix src/,$(SRC))
 
 norm2:

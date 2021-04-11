@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa_bonus.c                                   :+:      :+:    :+:   */
+/*   ft_utoa_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:21:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/02/28 16:14:24 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 00:43:04 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_putnbr_str(unsigned int nb, char *str, int len)
 	}
 }
 
-char		*ft_utoa(unsigned int n)
+char	*ft_utoa(unsigned int n)
 {
 	int		len;
 	char	*str;

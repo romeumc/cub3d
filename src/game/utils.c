@@ -6,20 +6,11 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 22:00:49 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/08 10:01:36 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 14:54:39 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_cub3d.h"
-
-// void	my_mlx_pixelput(t_game *game, int x, int y, int color)
-// {
-// 	char	*dst;
-
-// 	dst = game->img.addr + (y * game->img.line_lenght +
-// 		 x * (game->img.bits_per_pixel / 8));
-// 	*(unsigned int *)dst = color;
-// }
 
 void	my_mlx_pixelput(t_game *game, int x, int y, int color)
 {
@@ -62,4 +53,12 @@ t_color	set_trgb(int temp_color)
 	color.green = (temp_color >> 8) & 0xFF;
 	color.blue = temp_color & 0xFF;
 	return (color);
+}
+
+void	check_max_resolution(t_game *game)
+{
+	if (game->resolution.x > 1920)
+		game->resolution.x = 1920;
+	if (game->resolution.y > 1080)
+		game->resolution.y = 1080;
 }

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 20:08:11 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 15:50:34 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 14:44:52 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define KEY_M			46
 # define LEFT_ARROW		123
 # define RIGHT_ARROW	124
-# define KEY_PLUS		43
-# define KEY_MINUS		45
+# define KEY_PLUS		24
+# define KEY_MINUS		27
 
 /*
 ** Events

@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/11 21:48:12 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/12 00:21:24 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 14:43:40 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ void	write_data(t_game *game, int fd)
 	int		j;
 	char	*pixel_arr;
 
-	size = game->resolution.x * game->resolution.y;
+	size = game->resolution.x * game->resolution.y
+		* (game->img.bits_per_pixel / 8);
 	pixel_arr = malloc(sizeof(char) * size);
 	if (pixel_arr == NULL)
 		exit(EXIT_SUCCESS);
 	i = 0;
 	j = 0;
+	size /= 4;
 	while (i < (int)size)
 	{
 		pixel_arr[j++] = get_b(game->img.addr[i]);
@@ -84,7 +86,7 @@ void	save_bmp(t_game *game)
 	mode_t	mode;
 
 	mode = S_IRUSR | S_IRGRP | S_IROTH;
-	fd = open("capture.bmp", O_CREAT | O_WRONLY | O_TRUNC, mode);
+	fd = open("capture.bmp", O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, mode);
 	if (fd == -1)
 	{
 		printf("Error\nCould not create file");

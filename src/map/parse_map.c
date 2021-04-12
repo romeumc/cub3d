@@ -6,7 +6,7 @@
 /*   By: rmartins <rmartins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 21:58:30 by rmartins          #+#    #+#             */
-/*   Updated: 2021/04/07 17:19:54 by rmartins         ###   ########.fr       */
+/*   Updated: 2021/04/12 14:54:55 by rmartins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	get_resolution(char *line, t_game *game)
 			{
 				game->resolution.x = ft_atoi(ft_is_all_digit(temp[1]));
 				game->resolution.y = ft_atoi(ft_is_all_digit(temp[2]));
+				check_max_resolution(game);
 				game->resolution.valid = 1;
 			}
 			else
